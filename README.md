@@ -13,3 +13,5 @@ This repository contains the group project for CE9010
 - [ ] Implement inference.
 - [ ] Conduct further improvement.
 - [ ] Write research paper or final report.
+
+- [ ] Google Cloud Tutorial: http://cs231n.github.io/gce-tutorial/
