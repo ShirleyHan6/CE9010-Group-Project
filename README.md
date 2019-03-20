@@ -3,8 +3,8 @@ This repository contains the group project for CE9010
 
 ## Week 1: Dataset 
 
-- [ ] Do literature review.
-- [x] Conduct data collection and analysis.
+- [x] Do literature review.
+- [x] Conduct data collection and analysis: https://github.com/EdinburghNLP/Refresh
 - [ ] Create project template with TensorFlow/PyTorch.
 - [ ] Implement model trainer and saver.
 - [ ] Implement data preprocessing and generator.
