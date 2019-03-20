@@ -4,11 +4,11 @@ This repository contains the group project for CE9010
 ## Identify Data Problem
 
 ## Data acquisition & Preprocessing 
--[x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail). 
--[x] Split Article & Highlight
+- [x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail). 
+- [x] Split Article & Highlight
 ## Data Exploration: 
--[] Visualization
--[] Statistics
+- [ ] Visualization
+- [ ] Statistics
 
 ## Data Analysis
 
