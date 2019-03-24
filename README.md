@@ -8,7 +8,7 @@ This repository contains the group project for CE9010
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh). 
 ## Data Exploration: 
 - [ ] Visualization: 
-- [ ] Statistics(train/dev/test: 1500/500/500--choose according to size?)
+- [ ] Statistics(train/dev/test: 1200/400/400--choose only in DailyMail(score might be higher). 
 
 ## Data Analysis
 
@@ -17,7 +17,6 @@ This repository contains the group project for CE9010
 ## Report Results in Python Notebook
 - [ ] Export to Google Cloud
 ## Presentation Slides
-
 
 ## Overview
 - [x] Do literature review.
