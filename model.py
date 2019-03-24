@@ -8,6 +8,10 @@ from keras.models import Model
 from os import listdir
 import string
 
+"""
+Data Preprocessing
+"""
+
 
 # load doc into memory
 def load_doc(filename):
@@ -80,6 +84,12 @@ for example in stories:
     example['story'] = clean_lines(example['story'].split('\n'))
     example['highlights'] = clean_lines(example['highlights'])
 
+
+"""
+Building the model
+"""
+
+
 MAX_SEQUENCE_LENGTH = 1000
 
 tokenizer = Tokenizer()
@@ -96,12 +106,10 @@ data = pad_sequences(sequences_X, maxlen=MAX_SEQUENCE_LENGTH)
 labels = pad_sequences(sequences_y, maxlen=100) # test with maxlen=100
 
 # train/test split
-
 TEST_SIZE = 5
 X_train, y_train, X_test, y_test = data[:-TEST_SIZE], labels[:-TEST_SIZE], data[-TEST_SIZE:], labels[-TEST_SIZE:]
 
 # create model
-
 # encoder
 inputs = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
@@ -114,10 +122,14 @@ decoder1 = LSTM(128, return_sequences=True)(encoder3)
 outputs = TimeDistributed(Dense(len(word_index) + 1, activation='softmax'))(decoder1)
 
 model = Model(inputs=inputs, outputs=outputs)
+
+# loss function
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-batch_size = 32
+batch_size = 3
 epochs = 4
 
+# Train
 model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size, verbose=1)
 
+# Predict
