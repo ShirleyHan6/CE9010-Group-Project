@@ -2,20 +2,22 @@
 This repository contains the group project for CE9010
 
 ## Identify Data Problem
-- [ ] Extractive Summarizer
+- [x] Extractive Summarizer 
 ## Data acquisition & Preprocessing 
 - [x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail). 
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh). 
-## Data Exploration: 
-- [ ] Visualization: 
+
+## Data Exploration: DZ, Glenn
+- [ ] Visualization: Length, word frequency(visualize, (word cloud))
 - [ ] Statistics(train/dev/test: 1200/400/400--choose only in DailyMail(score might be higher). 
 
-## Data Analysis
-
+## Data Analysis: YB, Simeng
+---Model(in progress).
+---First Version
 ## Result Interpretation & Conclusion
 
 ## Report Results in Python Notebook
-- [ ] Export to Google Cloud
+- [ ] Export to Google Collab
 ## Presentation Slides
 
 ## Overview
@@ -32,3 +34,7 @@ This repository contains the group project for CE9010
 - [ ] Write research paper or final report.
 
 - [ ] [Google Cloud Tutorial](http://cs231n.github.io/gce-tutorial/)
+
+## Questions
+* Visualize text. 
+* Length, word frequency(visualize, (word cloud))
