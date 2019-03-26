@@ -19,7 +19,7 @@ Resources:
 ## Data Analysis: YB, Simeng
 - [ ] Model(in progress).
 - [ ] First Version by Week 10 Saturday. 
-
+- [ ] Training. [Google Cloud Tutorial](http://cs231n.github.io/gce-tutorial/)
 ## Result Interpretation & Conclusion
 - [ ] Evaluation Metric (script ready). 
 
@@ -39,7 +39,7 @@ Resources:
 - [ ] Implement inference.
 - [ ] Conduct further improvement.
 - [ ] Write research paper or final report.
-- [ ] [Google Cloud Tutorial](http://cs231n.github.io/gce-tutorial/)
+
 
 ## Questions
 * Visualize text. 
