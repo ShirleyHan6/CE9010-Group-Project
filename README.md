@@ -17,9 +17,10 @@ Resources:
 * Text analytics library: [NLTK](http://www.nltk.org/book/) 
 
 ## Data Analysis: YB, Simeng
-- [ ] Model(in progress).
+- [ ] [Model](https://machinelearningmastery.com/encoder-decoder-models-text-summarization-keras/)(in progress).
 - [ ] First Version by Week 10 Saturday. 
 - [ ] Training. [Google Cloud Tutorial](http://cs231n.github.io/gce-tutorial/)
+
 ## Result Interpretation & Conclusion
 - [ ] Evaluation Metric (script ready). 
 
