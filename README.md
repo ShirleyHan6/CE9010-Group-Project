@@ -9,15 +9,19 @@ This repository contains the group project for CE9010
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh). 
 
 ## Data Exploration: DZ, Glenn
-- [ ] Visualization: Length, word frequency(visualize, (word cloud))
+- [ ] Visualization: Length, word frequency(visualize, (word cloud)...)
+
 - [ ] Statistics(train/dev/test: 1200/400/400--choose only in DailyMail(score might be higher). 
 
+Resources: 
+* Text analytics library: [NLTK](http://www.nltk.org/book/) 
+
 ## Data Analysis: YB, Simeng
-* Model(in progress).
-* First Version by Week 10 Saturday. 
+- [ ] Model(in progress).
+- [ ] First Version by Week 10 Saturday. 
 
 ## Result Interpretation & Conclusion
-* Evaluation Metric (script ready). 
+- [ ] Evaluation Metric (script ready). 
 
 ## Report Results in Python Notebook
 - [ ] Export to Google Collab
