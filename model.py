@@ -92,24 +92,35 @@ Building the model
 
 MAX_SEQUENCE_LENGTH = 1000
 
+"""
+Tokenize text into vectors
+"""
 tokenizer = Tokenizer()
 X, y = [' '.join(t['story']) for t in stories], [' '.join(t['highlights']) for t in stories]
 
 total = X + y
 tokenizer.fit_on_texts(total)
+
 sequences_X = tokenizer.texts_to_sequences(X)
 sequences_y = tokenizer.texts_to_sequences(y)
+
 
 word_index = tokenizer.word_index
 
 data = pad_sequences(sequences_X, maxlen=MAX_SEQUENCE_LENGTH)
+
+print(len(data))
+for i in data:
+    print(len(i))
 labels = pad_sequences(sequences_y, maxlen=100) # test with maxlen=100
 
 # train/test split
 TEST_SIZE = 5
 X_train, y_train, X_test, y_test = data[:-TEST_SIZE], labels[:-TEST_SIZE], data[-TEST_SIZE:], labels[-TEST_SIZE:]
 
-# create model
+"""
+Create model
+"""
 # encoder
 inputs = Input(shape=(MAX_SEQUENCE_LENGTH,), dtype='int32')
 
@@ -120,16 +131,19 @@ encoder3 = RepeatVector(2)(encoder2)
 # decoder
 decoder1 = LSTM(128, return_sequences=True)(encoder3)
 outputs = TimeDistributed(Dense(len(word_index) + 1, activation='softmax'))(decoder1)
-
 model = Model(inputs=inputs, outputs=outputs)
 
 # loss function
 model.compile(loss='categorical_crossentropy', optimizer='adam')
+# TODO: Different Optimizer
 
-batch_size = 3
+model.summary()
+batch_size = 43
 epochs = 4
 
 # Train
-model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, batch_size=batch_size, verbose=1)
 
-# Predict
+print("Stopped")
+model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=epochs, verbose=1)
+#
+# # Predict

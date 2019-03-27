@@ -13,7 +13,7 @@ This repository contains the group project for CE9010
 ## Data Analysis
 
 ## Result Interpretation & Conclusion
-
+- [ ] Error metric: [ROUGE]()
 ## Report Results in Python Notebook
 - [ ] Export to Google Cloud
 ## Presentation Slides
