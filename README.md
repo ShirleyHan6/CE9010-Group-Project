@@ -29,7 +29,7 @@ Resources:
 
 ## Result Interpretation & Conclusion
 
-- [ ] Error metric: [ROUGE]()
+- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation)
 
 ## Report Results in Python Notebook
 
