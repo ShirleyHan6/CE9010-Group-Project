@@ -1,8 +1,10 @@
 # CE9010-Group-Project
+---
 
 This repository contains the group project for CE9010
 
 ## Time line (Week 10 - Week 
+---
 ## Identify Data Problem
 
 - [x] Extractive Summarizer
@@ -39,6 +41,7 @@ Resources:
 
 ## Presentation Slides & Report
 
+---
 ## Overview
 
 - [x] Do literature review.
