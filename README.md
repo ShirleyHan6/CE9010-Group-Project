@@ -13,7 +13,7 @@ This repository contains the group project for CE9010
 
 - [x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail).
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh).
-- [x] Data can be downloaded from (this link)https://www.kaggle.com/davidshinn/github-issues. 
+- [x] Data can be downloaded from this link(https://drive.google.com/drive/folders/1SpXFHpWWrq1wGZ8ASfhd14I3-qpAb6_I?usp=sharing). 
 ---
 ## Data Exploration: DZ, Glenn(By the end of Week 11). 
 
