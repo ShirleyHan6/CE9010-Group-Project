@@ -2,6 +2,7 @@
 
 This repository contains the group project for CE9010
 
+## Time line (Week 10 - Week 
 ## Identify Data Problem
 
 - [x] Extractive Summarizer
@@ -10,12 +11,12 @@ This repository contains the group project for CE9010
 
 - [x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail).
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh).
-
+---
 ## Data Exploration: DZ, Glenn
 
-- [ ] Visualization: Length, word frequency(visualize, (word cloud)...)
+- [x] Visualization: Length, word frequency(visualize, (word cloud)...)
 
-- [ ] Statistics(train/dev/test: 1200/400/400--choose only in DailyMail(score might be higher).
+- [x] Statistics(train/dev/test: 1200/400/400--choose only in DailyMail(score might be higher).
 
 Resources:
 
@@ -23,20 +24,20 @@ Resources:
 
 ## Data Analysis: YB, Simeng
 
-- [ ] [Model](https://machinelearningmastery.com/encoder-decoder-models-text-summarization-keras/)(in progress).
-- [ ] [A more comprehensive introduction](https://towardsdatascience.com/how-to-create-data-products-that-are-magical-using-sequence-to-sequence-models-703f86a231f8)
-- [ ] First Version by Week 10 Saturday.
-- [ ] Training. [Google Cloud Tutorial](http://cs231n.github.io/gce-tutorial/)
+- [x] [Model](https://machinelearningmastery.com/encoder-decoder-models-text-summarization-keras/)(in progress).
+- [x] [A more comprehensive introduction](https://towardsdatascience.com/how-to-create-data-products-that-are-magical-using-sequence-to-sequence-models-703f86a231f8)
+- [x] First Version by Week 10 Saturday.
+- [x] Export to Google Collab. [This repo](https://github.com/anqitu/NTUOSS-ImageRecognitionWorkshop) has a nice introduction. 
+- [ ] Set up a server. - by Week 10 Sunday
 
 ## Result Interpretation & Conclusion
 
-- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation)
+- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation). By Week 11 Wednesday. 
 
-## Report Results in Python Notebook
+## Hyper-Parameter Tuning
+- [ ] Hyper parameters: number of layers, 
 
-- [ ] Export to Google Collab
-
-## Presentation Slides
+## Presentation Slides & Report
 
 ## Overview
 
