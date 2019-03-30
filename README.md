@@ -32,15 +32,16 @@ Resources:
 - [x] Export to Google Collab. [This repo](https://github.com/anqitu/NTUOSS-ImageRecognitionWorkshop) has a nice introduction. 
 - [ ] Set up a server. - by Week 10 Sunday
 
-## Result Interpretation & Conclusion
+## Result Interpretation & Conclusion: Simeng
 
 - [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation). By Week 11 Wednesday. 
 
-## Hyper-Parameter Tuning
-- [ ] Hyper parameters: number of layers, 
+## Hyper-Parameter Tuning: DZ & Glenn
+- [ ] Hyper parameters: number of layers, activation function, learning rate, number of epochs, batch size, optimizer.  
 
-## Presentation Slides & Report
-
+## Presentation Slides & Report: Glenn
+- [ ] Report
+- [ ] Slides
 ---
 ## Overview
 
