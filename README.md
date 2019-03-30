@@ -24,6 +24,7 @@ Resources:
 ## Data Analysis: YB, Simeng
 
 - [ ] [Model](https://machinelearningmastery.com/encoder-decoder-models-text-summarization-keras/)(in progress).
+- [ ] [A more comprehensive introduction](https://towardsdatascience.com/how-to-create-data-products-that-are-magical-using-sequence-to-sequence-models-703f86a231f8)
 - [ ] First Version by Week 10 Saturday.
 - [ ] Training. [Google Cloud Tutorial](http://cs231n.github.io/gce-tutorial/)
 
