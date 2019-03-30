@@ -6,7 +6,10 @@ conda create -n py36 python3.6
 2. conda activate py36
 
 3. Upgrade the version of numpy: 
-pip install numpy --upgrade
+   pip install numpy --upgrade
+ 
+4. Install a few other package: 
+   pip install ktext
 
 4. jupyter notebook
 
