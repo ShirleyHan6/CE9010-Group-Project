@@ -1,10 +1,10 @@
 # CE9010-Group-Project
 ---
-
 This repository contains the group project for CE9010
 
-## Time line (Week 10 - Week 
----
+## Time line (Week 10 - Week 13) 
+* By the end of week 10: 
+
 ## Identify Data Problem
 
 - [x] Extractive Summarizer
@@ -14,7 +14,7 @@ This repository contains the group project for CE9010
 - [x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail).
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh).
 ---
-## Data Exploration: DZ, Glenn
+## Data Exploration: DZ, Glenn(By the end of Week 11). 
 
 - [x] Visualization: Length, word frequency(visualize, (word cloud)...)
 
@@ -24,7 +24,7 @@ Resources:
 
 - Text analytics library: [NLTK](http://www.nltk.org/book/)
 
-## Data Analysis: YB, Simeng
+## Data Analysis: YB, Simeng(By the end of Week 10)
 
 - [x] [Model](https://machinelearningmastery.com/encoder-decoder-models-text-summarization-keras/)(in progress).
 - [x] [A more comprehensive introduction](https://towardsdatascience.com/how-to-create-data-products-that-are-magical-using-sequence-to-sequence-models-703f86a231f8)
@@ -32,14 +32,16 @@ Resources:
 - [x] Export to Google Collab. [This repo](https://github.com/anqitu/NTUOSS-ImageRecognitionWorkshop) has a nice introduction. 
 - [ ] Set up a server. - by Week 10 Sunday
 
-## Result Interpretation & Conclusion: Simeng
+## Evaluation Metric YB, Simeng (By the end of Week 10)
+- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation).
 
-- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation). By Week 11 Wednesday. 
-
-## Hyper-Parameter Tuning: DZ & Glenn
+## Hyper-Parameter Tuning: DZ & Glenn (By the end of week 11). 
 - [ ] Hyper parameters: number of layers, activation function, learning rate, number of epochs, batch size, optimizer.  
 
-## Presentation Slides & Report: Glenn
+## Result Interpretation & Conclusion (By the end of week 12). 
+- [ ] Error Analysis
+
+## Presentation Slides & Report: Glenn (By Week 13 Tue). 
 - [ ] Report
 - [ ] Slides
 ---
