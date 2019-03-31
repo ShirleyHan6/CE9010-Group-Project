@@ -31,7 +31,6 @@ Resources:
 - [x] [A more comprehensive introduction](https://towardsdatascience.com/how-to-create-data-products-that-are-magical-using-sequence-to-sequence-models-703f86a231f8)
 - [x] First Version by Week 10 Saturday.
 - [x] Export to [Google Collab](https://drive.google.com/drive/folders/1t3HqTZ6D4v2CJ290j-x44YKyBcjrY2rf?usp=sharing). [This repo](https://github.com/anqitu/NTUOSS-ImageRecognitionWorkshop) has a nice introduction of how to use Google Collab for Data Science projects.
-- 
 - [ ] Set up a server. - by Week 10 Sunday
 
 ## Evaluation Metric YB, Simeng (By the end of Week 10)
@@ -51,11 +50,11 @@ Resources:
 
 - [x] Do literature review.
 - [x] [Conduct data collection and analysis](https://github.com/EdinburghNLP/Refresh)
-- [ ] Create project template with Keras/Tensorflow
-- [ ] Implement model trainer and saver.
-- [ ] Implement data preprocessing and generator.
-- [ ] Implement model architecture.
-- [ ] Implement model's performance evaluation.
+- [x] Create project template with Keras/Tensorflow
+- [x] Implement model trainer and saver.
+- [x] Implement data preprocessing and generator.
+- [x] Implement model architecture.
+- [x] Implement model's performance evaluation.
 - [ ] Implement inference.
 - [ ] Conduct further improvement.
 - [ ] Write research paper or final report.
