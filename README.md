@@ -35,7 +35,7 @@ Resources:
 - [ ] [Set up a server](https://github.com/cs231n/gcloud). - by Week 10 Sunday
 
 ## Evaluation Metric YB, Simeng (By the end of Week 10)
-- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation).
+- [x] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation).
 
 ## Hyper-Parameter Tuning: DZ & Glenn (By the end of week 11). 
 - [ ] Hyper parameters: number of layers, activation function, learning rate, number of epochs, batch size, optimizer.  
