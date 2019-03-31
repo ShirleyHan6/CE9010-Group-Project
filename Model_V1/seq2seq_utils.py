@@ -279,7 +279,6 @@ class Seq2Seq_Inference(object):
 
         return original_body_encoding, ' '.join(decoded_sentence)
 
-
     def print_example(self,
                       i,
                       body_text,
@@ -289,20 +288,20 @@ class Seq2Seq_Inference(object):
         """
         Prints an example of the model's prediction for manual inspection.
         """
-        if i:
-            print('\n\n==============================================')
-            print(f'============== Example # {i} =================\n')
-
-        if url:
-            print(url)
-
-        print(f"Issue Body:\n {body_text} \n")
-
-        if title_text:
-            print(f"Original Title:\n {title_text}")
+        # if i:
+        #     print('\n\n==============================================')
+        #     print(f'============== Example # {i} =================\n')
+        #
+        # if url:
+        #     print(url)
+        #
+        # print(f"Issue Body:\n {body_text} \n")
+        #
+        # if title_text:
+        #     print(f"Original Title:\n {title_text}")
 
         emb, gen_title = self.generate_issue_title(body_text)
-        print(f"\n****** Machine Generated Title (Prediction) ******:\n {gen_title}")
+        # print(f"\n****** Machine Generated Title (Prediction) ******:\n {gen_title}")
 
         if self.nn:
             # return neighbors and distances
@@ -320,6 +319,7 @@ class Seq2Seq_Inference(object):
                 print("\n**** Similar Issues (using encoder embedding) ****:\n")
                 display(similar_issues_df)
 
+        return gen_title
 
     def demo_model_predictions(self,
                                n,
@@ -348,12 +348,16 @@ class Seq2Seq_Inference(object):
         url = issue_df.issue_url.tolist()
 
         demo_list = np.random.randint(low=1, high=len(body_text), size=n)
+        gen_title = []
         for i in demo_list:
-            self.print_example(i,
+             gen_title.append(self.print_example(i,
                                body_text=body_text[i],
                                title_text=title_text[i],
                                url=url[i],
-                               threshold=threshold)
+                               threshold=threshold))
+
+        return body_text, title_text, gen_title
+
 
     def prepare_recommender(self, vectorized_array, original_df):
         """

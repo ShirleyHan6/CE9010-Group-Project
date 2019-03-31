@@ -1,1 +1,4 @@
-/cnn
+cnn/
+
+.DS_Store
+
