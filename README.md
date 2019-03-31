@@ -1,9 +1,12 @@
 # CE9010-Group-Project
+
 ---
+
 This repository contains the group project for CE9010
 
-## Time line (Week 10 - Week 13) 
-* By the end of week 10: 
+## Time line (Week 10 - Week 13)
+
+- By the end of week 10:
 
 ## Identify Data Problem
 
@@ -13,9 +16,11 @@ This repository contains the group project for CE9010
 
 - [x] Data Scraper & Sentence Tokenizer: modify code from [this repo](https://github.com/abisee/cnn-dailymail).
 - [x] [Split Article & Highlight](https://github.com/EdinburghNLP/Refresh).
-- [x] Data can be downloaded from this link(https://drive.google.com/drive/folders/1SpXFHpWWrq1wGZ8ASfhd14I3-qpAb6_I?usp=sharing). 
+- [x] Data can be downloaded from this link(https://drive.google.com/drive/folders/1SpXFHpWWrq1wGZ8ASfhd14I3-qpAb6_I?usp=sharing).
+
 ---
-## Data Exploration: DZ, Glenn(By the end of Week 11). 
+
+## Data Exploration: DZ, Glenn(By the end of Week 11).
 
 - [x] Visualization: Length, word frequency(visualize, (word cloud)...)
 
@@ -32,20 +37,28 @@ Resources:
 - [x] First Version by Week 10 Saturday.
 - [x] Export to [Google Collab](https://drive.google.com/drive/folders/1t3HqTZ6D4v2CJ290j-x44YKyBcjrY2rf?usp=sharing). [This repo](https://github.com/anqitu/NTUOSS-ImageRecognitionWorkshop) has a nice introduction of how to use Google Collab for Data Science projects.
 - [ ] Set up a server. - by Week 10 Sunday
+-
+- [ ] [Set up a server](https://github.com/cs231n/gcloud). - by Week 10 Sunday
 
 ## Evaluation Metric YB, Simeng (By the end of Week 10)
-- [ ] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation).
 
-## Hyper-Parameter Tuning: DZ & Glenn (By the end of week 11). 
-- [ ] Hyper parameters: number of layers, activation function, learning rate, number of epochs, batch size, optimizer.  
+- [x] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation).
 
-## Result Interpretation & Conclusion (By the end of week 12). 
+## Hyper-Parameter Tuning: DZ & Glenn (By the end of week 11).
+
+- [ ] Hyper parameters: number of layers, activation function, learning rate, number of epochs, batch size, optimizer.
+
+## Result Interpretation & Conclusion (By the end of week 12).
+
 - [ ] Error Analysis
 
-## Presentation Slides & Report: Glenn (By Week 13 Tue). 
+## Presentation Slides & Report: Glenn (By Week 13 Tue).
+
 - [ ] Report
 - [ ] Slides
+
 ---
+
 ## Overview
 
 - [x] Do literature review.
