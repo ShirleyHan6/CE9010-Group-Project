@@ -6,4 +6,4 @@
 # Instructions for Running Jupyter notebook Locally with Google Cloud VM Machine
 
 - ssh into the server
-- Go to <jupyter_ip_address> in the browser, enter password:1234
+- Go to <jupyter_ip_address> in the local browser, enter password:1234
