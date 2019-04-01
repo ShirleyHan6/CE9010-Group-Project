@@ -8,7 +8,11 @@ from keras.utils.vis_utils import model_to_dot
 import logging
 import numpy as np
 import dill as dpickle
-from annoy import AnnoyIndex
+
+#install 
+!pip install annoy
+
+from annoy import AnnoyIndex 
 from tqdm import tqdm, tqdm_notebook
 from random import random
 from nltk.translate.bleu_score import corpus_bleu
