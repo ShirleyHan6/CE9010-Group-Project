@@ -36,9 +36,7 @@ Resources:
 - [x] [A more comprehensive introduction](https://towardsdatascience.com/how-to-create-data-products-that-are-magical-using-sequence-to-sequence-models-703f86a231f8)
 - [x] First Version by Week 10 Saturday.
 - [x] Export to [Google Collab](https://drive.google.com/drive/folders/1t3HqTZ6D4v2CJ290j-x44YKyBcjrY2rf?usp=sharing). [This repo](https://github.com/anqitu/NTUOSS-ImageRecognitionWorkshop) has a nice introduction of how to use Google Collab for Data Science projects.
-- [ ] Set up a server. - by Week 10 Sunday
--
-- [ ] [Set up a server](https://github.com/cs231n/gcloud). - by Week 10 Sunday (need to discuss environment) https://console.cloud.google.com/cloudshell/editor?project=ce9010-course-project&organizationId=0
+- [x] [Set up a server](https://github.com/cs231n/gcloud). - by Week 10 Sunday (need to discuss environment) https://console.cloud.google.com/cloudshell/editor?project=ce9010-course-project&organizationId=0
 
 ## Evaluation Metric YB, Simeng (By the end of Week 10)
 
