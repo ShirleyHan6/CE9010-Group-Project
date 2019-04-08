@@ -44,7 +44,13 @@ Resources:
 
 ## Hyper-Parameter Tuning: DZ & Glenn (By the end of week 11).
 
-- [ ] Hyper parameters: number of layers, activation function, learning rate, number of epochs, batch size, optimizer.
+Hyper parameters: 
+- [ ] number of layers, 
+- [ ] activation function, 
+- [ ] learning rate, 
+- [ ] number of epochs, 
+- [ ] batch size, 
+- [ ] optimizer.
 
 ## Result Interpretation & Conclusion (By the end of week 12).
 
