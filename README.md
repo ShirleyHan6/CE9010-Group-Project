@@ -48,8 +48,8 @@ Hyper parameters:
 - [ ] number of layers, 
 - [ ] activation function, 
 - [ ] learning rate, 
-- [ ] number of epochs, 
-- [ ] batch size, 
+- [x] number of epochs (No significant improvement after n>=5), 
+- [x] batch size, 
 - [ ] optimizer.
 
 ## Result Interpretation & Conclusion (By the end of week 12).
