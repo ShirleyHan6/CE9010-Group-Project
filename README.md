@@ -42,14 +42,15 @@ Resources:
 
 - [x] Error metric: [ROUGE](https://github.com/ShirleyHan6/CE9010-Group-Project/tree/master/Evaluation).
 
-## Hyper-Parameter Tuning: DZ & Glenn (By the end of week 11).
+## Hyper-Parameter Tuning: YB, DZ & Glenn (By the end of week 11).
 
 Hyper parameters: 
 - [ ] number of layers, 
 - [ ] activation function, 
 - [ ] learning rate, 
 - [x] number of epochs (No significant improvement after n>=5), 
-- [x] batch size, 
+- [x] batch size (Limited due to memory size), 
+- [x] size of training data (No significant improvement after n>400,000),
 - [ ] optimizer.
 
 ## Result Interpretation & Conclusion (By the end of week 12).
