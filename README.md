@@ -51,7 +51,7 @@ Hyper parameters:
 - [x] number of epochs (No significant improvement after n>=5), 
 - [x] batch size (Limited due to memory size), 
 - [x] size of training data (No significant improvement after n>400,000),
-- [ ] optimizer.
+- [x] optimizer (best optimizer = 1e-4).
 
 ## Result Interpretation & Conclusion (By the end of week 12).
 
