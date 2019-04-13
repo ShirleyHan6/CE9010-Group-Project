@@ -47,7 +47,7 @@ Resources:
 Hyper parameters: 
 - [ ] number of layers, 
 - [ ] activation function, 
-- [ ] learning rate, 
+- [x] learning rate (alto adjusted by the function), 
 - [x] number of epochs (No significant improvement after n>=5), 
 - [x] batch size (Limited due to memory size), 
 - [x] size of training data (No significant improvement after n>400,000),
