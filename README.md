@@ -1,12 +1,6 @@
 # CE9010-Group-Project
 
----
-
 This repository contains the group project for CE9010
-
-## Timeline (Week 10 - Week 13)
-
-- By the end of week 10:
 
 ## Identify Data Problem
 
