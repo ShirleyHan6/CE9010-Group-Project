@@ -1,0 +1,38 @@
+when i set up listen 443 ssl http2; errlog: 2017/03/17 14:42:43 alert 3686 0: worker process 19799 exited on signal 11 2017/03/17
+ 14:42:44 alert 3686 0: worker process 19798 exited on signal 11 2017/03/17 14:42:44 alert 3686 0: worker process 19800 exited on 
+signal 11 2017/03/17 14:42:44 alert 3686 0: worker process 19801 exited on signal 11 2017/03/17 14:42:44 alert 3686 0: worker proc
+ess 19786 exited on signal 11 2017/03/17 14:42:44 alert 3686 0: worker process 19802 exited on signal 11 2017/03/17 14:42:44 alert
+ 3686 0: worker process 19804 exited on signal 11 message mar 17 14:42:43 localhost kernel: nginx 19791 : segfault at 20 ip 000000
+00004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 mar 17 14:42:43 localhost kernel: nginx 19789 : segfault at 20 ip 00
+000000004e1188 sp 00007ffe9cce4690 error 4 in nginx 400000+376000 mar 17 14:42:43 localhost kernel: nginx 19796 : segfault at 20 i
+p 00000000004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 mar 17 14:42:43 localhost kernel: nginx 19797 : segfault at 
+20 ip 00000000004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 mar 17 14:42:43 localhost kernel: nginx 19799 : segfault
+ at 20 ip 00000000004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 mar 17 14:42:44 localhost kernel: nginx 1979[13/911]
+ault at 20 ip 00000000004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 mar 17 14:42:44 localhost kernel: nginx 19800 :
+segfault at 20 ip 00000000004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 mar 17 14:42:44 localhost kernel: nginx 1980
+1 : segfault at 20 ip 00000000004e1188 sp 00007ffe9cce46e0 error 4 in nginx 400000+376000 some env info root@localhost conf openss
+l version openssl 1.1.0e 16 feb 2017 --with-openssl=/var/softs/openssl-1.1.0e
+
+
+Original Title:
+ segfault with http2 openssl 1.1.0e
+
+****** Machine Generated Title (Prediction) ******:
+ ssl certificate error
+
+
+"https://github.com/nhlinhCS/test/issues/228"                                                                                     
+Issue Body:                                                                                                                       
+ enhanced behavior when a customer's ams 360 system stops sending us notifications it should alert us. that alert should bring the
+ user to a screen where they verify the notifications are working. this could be a variation of this screen:                      
+https://next.agencyrevolution.com/www.garrettinsurance.com/lists/996296e5-0cec-4ddb-af1b-f8f65dacbc9e/setup-ams360-notification?st
+ep=login actual behavior customer has alert about out of sync. customer clicks link and views integration page but has no idea wha
+t to do. <img width= 381 alt= screen shot 2016-04-26 at 2 31 43 pm src= https://cloud.githubusercontent.com/assets/279802/14810203
+/d6afa23c-0bbb-11e6-84da-495c02e73ca4.png > scope who is or may be affected all ams 360 customers                                 
+                                                                                                                                  
+Original Title:                                                                                                                   
+ enh build tool to help customer fix notifications
+****** Machine Generated Title (Prediction) ******:
+ enh build tool to help customer fix notifications
+============== Example # 10015 =================
+

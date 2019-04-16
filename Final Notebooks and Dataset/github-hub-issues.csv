@@ -1,0 +1,2085 @@
+issue_title,body
+Support asset arguments after tag argument in release create command,"This pull request add support for optional asset `<FILE>` arguments after the `<TAG>` argument in `hub release create` command.
+
+I think it is easier to use asset arguments than asset options because you can specify glob patterns like `*.tar.xz` if the shell support expanding glob patterns.
+
+Also add a note that `-a` option can be specified multiple times in the long help of `hub release create command`."
+rpm distribution,Would it be possible to support an rpm distribution of hub?
+Add the local SSH key to GitHub,"It would be awesome if `hub` had an option to add a local SSH key to GitHub. Basically something like [ssh-keyreg](https://github.com/b4b4r07/ssh-keyreg), but without the need to install yet another command line tool if we already have `hub`.
+
+It would be even better if after `hub clone ...` -> ""Permission denied (publickey)"" error `hub` could ask ""Would you like to add your local SSH public key to your GitHub account?"".
+
+Generating new ssh keys would be fine too!
+
+I'm aware that there's a (closed) issue https://github.com/github/hub/issues/611, but I'm struggling to understand the motivation behind closing it. The closing comment has a score of -10 and mentions that HTTPS is better, or something like that. But:
+
+1. When I run `hub clone <reponame>` it uses SSH by default
+2. As far as I know, ssh is still the simplest solution when you need a read/write access to the repo without retyping the password
+3. The only pain in the ass is that you need to generate a ssh key when you setup a new computer, which is exactly what `hub` could automate
+4. SSH is one of two primary protocols of git, and some users just might prefer it over HTTPS for any reason
+
+I'm totally aware that it's an open source project (thank you for it!). Nobody says that it needs to be implemented right now, but I believe that leaving this feature request open would be a good opportunity for people to comment and leave their opinions."
+fork --remote-name missing in bash completions,"Short on time, otherwise I would just PR this. I'll leave it here for now and circle back to it later if nobody else gets to it.
+
+Simply put, all that needs to happen is the flag `--remote-name` needs to be added to `_git_fork`.
+
+https://github.com/github/hub/blob/accfda9aa4009597da4362be31cb179b8392b84d/etc/hub.bash_completion.sh#L222-L236
+
+Thanks in advance!"
+Introduce hub milestone command,"I'd love to see a command to manage milestones of a GitHub repository.
+
+Use case that I'm facing: I'm working on a multirepo architecture, all of which **should** use the same milestones: iteration x, iteration x+1, backlog, unknown. When creating a new repo I need to recreate these tags there.
+
+It's doable with GH web UI, yes, but after discovering the ease of getting job done with `hub` command - it's no longer appealing. Especially that I have an automation where I can run a command in each project's repository.
+
+I'd like to perform it with a single command, something like:
+
+```
+hub milestone create ""iteration x"" ""iteration x+1"" ""unknown"" ""backlog""
+```
+
+Eventually it could be passed as CSV like so:
+
+```
+hub milestone create ""iteration x,iteration x+1,unknown,backlog""
+```
+
+Naturally it would require to also include a `hub milestone` command that I believe should list open milestones by default.
+
+Related issues (#2063) - though I believe it should be a separate command rather than adding it as a `hub issue` subcommand as milestones are related to both issues and prs.
+
+In case proposal sounds reasonable I'd be happy to contribute."
+Retrieve pull requests by date range,"It seems `hub pr` only allows to retrieve the last X (given by `-L X`) pull requests filtered by state.
+
+It would be great (if the github API allows) if we could retrieve all PRs that were opened/closed/... within a given date range."
+Filtered list of pull requests (by label),"I would like to be able to retrieve a list of pull requests filter by label.
+
+This should be able to be combined with the filter for state."
+hub pull-request fails with error and panic,"```
+$ hub --version
+git version 1.8.3.1
+hub version 2.7.1
+$ hub pull-request -h <my branch>
+interface conversion: interface {} is yaml.MapSlice, not []interface {}
+
+goroutine 1 [running]:
+panic(0x7202e0, 0xc00013a330)
+        /usr/lib/golang/src/runtime/panic.go:513 +0x1b9
+github.com/github/hub/github.(*yamlConfigDecoder).Decode(0xa16b80, 0x7d8000, 0xc00000e110, 0xc00000cae0, 0x0, 0x1)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/config_decoder.go:40 +0x748
+github.com/github/hub/github.(*configService).Load(0xc00009f598, 0xc0000150e0, 0x1b, 0xc00000cae0, 0x0, 0x0)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/config_service.go:42 +0xb1
+github.com/github/hub/github.CurrentConfig(0xc00002042a)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/config.go:305 +0x117
+github.com/github/hub/github.newProject(0xc000020421, 0x8, 0xc00002042a, 0x9, 0xc00002040a, 0x16, 0xc000020400, 0x3, 0x0)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/project.go:164 +0x32c
+github.com/github/hub/github.NewProjectFromURL(0xc000094400, 0x1, 0x0, 0x0)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/project.go:129 +0x12f
+github.com/github/hub/github.(*Remote).Project(0xc00009f728, 0x0, 0x0, 0x7323e0)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/remote.go:27 +0x33
+github.com/github/hub/github.(*GitHubRepo).MainProject(0xc00000c660, 0x0, 0x0, 0x0)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/github/localrepo.go:209 +0xa6
+github.com/github/hub/commands.pullRequest(0x9f28c0, 0xc0000d44d0)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/commands/pull_request.go:163 +0xa2
+github.com/github/hub/commands.(*Command).Call(0x9f28c0, 0xc0000d44d0, 0xc00007f501, 0xda0000c000086a00)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/commands/commands.go:45 +0x126
+github.com/github/hub/commands.(*Runner).Call(0xc00004ae10, 0x9f28c0, 0xc0000d44d0, 0xc, 0xc000086dd8, 0xc000000300, 0xc00007fd40)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/commands/runner.go:115 +0x39
+github.com/github/hub/commands.(*Runner).Execute(0xc00004ae10, 0x793df8, 0xc00009ff88, 0x4070c0, 0xc00001e0b8)
+        /builddir/build/BUILD/hub-2.7.1/src/github.com/github/hub/commands/runner.go:100 +0x3a7
+main.main()
+        /builddir/build/BUILD/hub-2.7.1/main.go:16 +0x51
+
+Would you like to open an issue? ([Y]es/[N]o/[A]lways/N[e]ver):
+```
+
+I have a ~/.config/hub file, that looks like this:
+
+```
+<my organization's github hostname>:
+  oauth_token: <my token>
+  user: <my username>
+```
+
+I get the same error with or without the '-h' in the pull-request call. I'm new to git so please be gentle.
+
+Thanks.
+"
+Adding a subcommand to be able to comment issue,"The subcommand of form:
+```
+hub issue comment <issueNo> 
+```
+
+that will allow to add comments to the `issueNo`"
+Add Commit Co-Author Support,This would add functionality to `commit` so that `--co-author NAME EMAIL` is a valid argument. It would simply add `Co-authored-by: $1 <$2>` to the commit body.
+Support listing pull requests by owner/author or self,It would be nice if `pr list` would support listing pull requests by their owner/author (+ A shortcut for listing your own pull requests would be nice too).
+More push options in `pull-request -p`,"I hoped to make `hub pull-request -p` a replacement for `git push -u origin` + manually creating a pull request. I can't do this when I need to `push --no-verify` or `push --force`.
+
+Is there any possibility of teaching `hub pull-request -p` to accept these and/or similar arguments, and pass them on to `git push`?"
+check head branch exists before creating PR,"Previously hub checked that there were [no unpushed commits](https://github.com/github/hub/blob/b3b3ebb8e517acd269489b9bd163de2f8fd309fc/commands/pull_request.go#L219-L223) but this check doesn't work when there is not even a remote branch.
+
+**Before**
+<img width=""431"" alt=""screenshot 2019-03-02 at 22 58 28"" src=""https://user-images.githubusercontent.com/570608/53688632-b8d8e680-3d3e-11e9-86d5-48c654994a31.png"">
+
+**After**
+<img width=""503"" alt=""screenshot 2019-03-02 at 23 00 22"" src=""https://user-images.githubusercontent.com/570608/53688643-fb9abe80-3d3e-11e9-8b42-1e84ffe523b0.png"">
+
+
+This fixes #1930."
+pr checkout fails if the author had force-pushed commits,"Consider this work flow:
+
+- Janice asks me to review her pull request
+- I run `hub pr checkout 123`
+- I request changes; Janice rebases on master and force-pushes to her branch while making changes
+- I run `hub pr checkout 123` again
+
+At this point, since I already had the branch checked out, `hub` tries to fast forward my branch. This fails because there are conflicts.
+
+I would love to have a flag like `--force` or `--recreate-branch` that deletes and recreates the branch for me. Since I am only reviewing the patch, there is no harm in deleting the branch.
+
+```
+$ hub version
+git version 2.14.1
+hub version 2.10.0
+```"
+"Provide the name of the remote for the user's fork, the name of the user","TL;DR: There doesn't seem to be a way to know the name of the remote of my current fork. I would need it to automate pushing commits.
+
+**Background**: people have different conventions when naming upstream/fork their remote repositories. Common examples: upstream/origin, origin/$USER etc.
+
+I am writing scripts to be used by a team, and those scripts use git and hub to automate the creation of some branches and pull-requests.
+
+The workflow is similar to the one found in the [default documentation](https://hub.github.com/):
+
+```
+git checkout -b $mybranch
+git commit -am ""My automated commit""
+git push $userremote
+hub pull-request -m $msg
+```
+
+My issue is that given that people name their `userremote` differently I either have to parametrize it, or fetch it, which can be achieved using the following ruby code:
+
+```ruby
+def hub_fork_remote_name
+  require 'YAML'
+  hub_config = File.open(File.expand_path(""~/.config/hub""), 'r:bom|utf-8') { |f| Psych.safe_load(f.read) }
+  user = hub_config['github.com'][0]['user']
+  `git remote -v`.split(""\n"").map{|l| l.split}.select{|a| a[2] == '(push)' && a[1] =~ /github.com.#{user}/ }.first[0]
+end
+hub_fork_remote_name
+```
+
+It would be much easier if hub was able to display some information, such as the username and the fork remote name.
+
+I am willing to contribute it, but would gladly first get some feedback on whether this is a good idea and where it would make most sense to add the feature.
+"
+"Bash completion outdated, incomplete","[hub.bash_completion](https://github.com/github/hub/blob/28ebb7ceaf868520025758aafd63f386bf19dc32/etc/hub.bash_completion.sh) checked against 2.9.0. The basics are fine, so no urgency, but here goes.
+
+# Outdated completion:
+
+Provided the comment in the source is correct (it was for those I verified, but I didn't verify all):
+
+- `hub browse [-u] [--|[USER/]REPOSITORY] [SUBPAGE]`, but should be `hub browse [-uc] [[USER/]REPOSITORY|--] [SUBPAGE]`
+
+- `hub compare [-u] [USER[/REPOSITORY]] [[START...]END]`, but should be
+```
+hub compare [-uc] [USER] [[START...]END]
+hub compare [-uc] [-b BASE]
+```
+
+- `hub create [NAME] [-p] [-d DESCRIPTION] [-h HOMEPAGE]`, but should be `hub create [-poc] [-d DESCRIPTION] [-h HOMEPAGE] [[ORGANIZATION/]NAME]`
+
+- `hub fork [--no-remote]` but should be `hub fork [--no-remote] [--remote-name REMOTE] [--org ORGANIZATION]`
+
+- `hub pull-request [-f] [-m <MESSAGE>|-F <FILE>|-i <ISSUE>|<ISSUE-URL>] [-b <BASE>] [-h <HEAD>] [-a <USER>] [-M <MILESTONE>] [-l <LABELS>]`, but should be
+```
+hub pull-request [-focp] [-b BASE] [-h HEAD] [-r REVIEWERS ] [-a ASSIGNEES] [-M MILESTONE] [-l LABELS]
+hub pull-request -m MESSAGE [--edit]
+hub pull-request -F FILE [--edit]
+hub pull-request -i ISSUE
+```
+
+# Missing completion
+
+As in, it completes the command name itself, but no arguments. The affected commands:
+
+- `ci-status`
+- `delete`
+- `fork`
+- `issue`
+- `pr`
+- `release`
+- `sync`"
+Fixes bash completion for unaliased `hub`,"Since git v2.18, git no longer uses a `__git_list_all_commands` function
+to get the list of subcommands to complete. That function was being wrapped
+by hub to add hub's own subcommands to the output.
+
+As of git v2.18, git's completion function invokes `git --list-cmds...`
+instead of the `__git_list_all_commands` function.
+Hub v2.5.0 introduces support for the --list-cmds option, so if
+git is aliased to hub, the completion includes hub's subcommands.
+However, this only works when git is aliased to hub.
+
+This change introduces a corresponding function `__hub_main` as a
+correlary to git's `__git_main` completion function.
+
+Hub's function wraps git's function, but temporarily aliases git to hub
+before invoking `__git_main`.
+(This way, `git --list-cmds` will actually invoke hub, and therefore include
+hub's own subcommands.)
+
+After invoking `__git_main`, it then unaliases `git`, so as to not
+have a side effect of creating an alias.
+
+Caveat: if git is already aliased to something prior to the invocation
+of `__hub_main`, then the alias is not disturbed; `__git_main` is
+invoked regardless so at the very least, `hub` will complete git's
+builtin subcommands.
+
+fixes #1792 (for bash, at least)"
+Adds traversing organizations you belong to for `git clone repo`,"Addresses #366
+
+I would need some help in getting some tests written for this feature. I'm just a bit at a loss as to how that would work.
+"
+Tab completion for repo names in `hub clone`,"How about some tab completion for the shorthand repo names in the `hub clone` command?
+
+This PR adds support for tab completion of repo names in `git clone <repo>`. It supports both un-qualified repo names for the current user, and `<user>/<repo>` qualified names.
+
+Examples:
+
+```
+hub clone <TAB>
+```
+
+will list all the current user's own repos.
+
+```
+hub clone foo<TAB>
+```
+
+will complete this user's repos starting with ""foo"".
+
+```
+hub clone defunkt/<TAB>
+```
+
+will list all repos for user `defunkt`.
+
+<img width=""837"" alt=""screen shot 2018-12-22 at 12 58 46 am"" src=""https://user-images.githubusercontent.com/2618447/50371246-d2162780-0584-11e9-9bed-476179e54a3d.png"">
+
+<img width=""837"" alt=""screen shot 2018-12-22 at 12 59 07 am"" src=""https://user-images.githubusercontent.com/2618447/50371247-d3dfeb00-0584-11e9-85e2-467a5fd3d820.png"">
+
+### Limitations:
+
+Does not complete user names, because there's just too darn many of them. (Maybe if the GitHub API exposed a prefix-filtered user listing endpoint, we could do that too.)
+
+It's pretty slow right now. If this PR is accepted, I'll add some caching to it.
+"
+Automatically add the `upstream` remote when cloning a fork,"```sh
+$ hub clone my-fork
+> origin:   git://github.com/MYUSER/my-fork.git
+> upstream: git://github.com/OWNER/original-project.git
+
+$ hub clone --origin=upstream my-fork
+> upstream: git://github.com/MYUSER/my-fork.git
+> origin:   git://github.com/OWNER/original-project.git
+```
+
+Ref. https://github.com/github/hub/issues/348
+Fixes #811
+
+/cc @apjanke"
+Allow specifying the git remote name for a command,"### pull-request
+
+When raising PRs, by default I want to raise a PR from the branch my current `HEAD` is tracking (which is on the `fork` remote) to the `HEAD` branch on the upstream repo (i.e. the default branch for the `up` remote, `refs/remotes/up/HEAD`).
+
+This is the current command I have to run to do this:
+
+```bash
+hub pull-request \
+  -b $(git remote get-url up | 
+       sed -E 's|^.*github.<company>.com[:/]([^/]+)/.*$|\1|'):$(git symbolic-ref refs/remotes/up/HEAD | 
+       sed 's|^refs/remotes/up/||'
+  )
+  -o
+```
+
+This resolves to something like:
+
+```bash
+hub pull-request -b upstream_org:dev -o
+```
+
+I would like to be able to specify the remote name instead, so I could just do:
+
+```bash
+hub pull-request -b up/dev -o
+```
+
+I'm thinking `hub` could work out that this is a remote-tracking branch name, and resolve `up/dev` to `upstream_org:dev`.
+
+---
+
+### remote create
+
+I have the same problem with `hub release create`, except that here AFAICT there is no way to specify a remote name or an org name, given two remotes, neither called origin, `hub` just picks one at random.
+
+`hub release` does take a `--commitish` flag, but that flag is passed directly to the GitHub API without being resolved.
+
+This makes `hub release create` unusable for us, as where the tag gets created is not clear."
+Updated README.md with Ubuntu Snap install instructions,Adds a section for installing `hub` on Ubuntu with `Snap`
+"release/create content-type default to ""application/octet-stream""","for example, see release done via web ui: https://api.github.com/repos/DomainDrivenArchitecture/smeagol/releases/14283686
+one asset has `content_type: ""application/x-java-archive""`
+
+another release done via hub: https://api.github.com/repos/DomainDrivenArchitecture/smeagol/releases/14536031
+has `content_type: ""application/octet-stream""`
+
+I think there should be a way to specify this (maybe via cmd flag)"
+Improve Zsh completion installation docs,Fixes #1956
+Use hub to list code reviewers that would be added from CODEOWNERS file,"The idea here is that hub could have a command to list the users that would be added to a review/commit/etc via the CODEOWNERS file.  This could also be used to test the CODEOWNERS file before pushing changes, i.e. If I use this glob, what files will I be put on reviews for?"
+Suggestion: add docs for zsh completions,"Out of the box, Zsh completions don't work as you would expect.
+
+Given a fresh install:
+
+``` bash
+brew install zsh
+brew install git
+brew install hub
+
+# Workaround to fix bug with hub completions.
+# hub completions only work when this alias is set.
+# https://github.com/github/hub/issues/1792#issuecomment-403413131
+alias git=hub
+```
+
+When I type `git pull-<tab>`, it successfully completes to `git pull-request`.
+
+However, completion does not work for subcommand arguments. For example, when I type `git pull-request -<tab>`, the arguments do not complete.
+
+After some digging, I discovered that I had two sets of Zsh completions for Git (using the setup above, which I believe is the route most people will take):
+
+- Git's official completions (e.g. `/usr/local/share/zsh/site-functions/_git`)
+- Zsh's official Git completions (e.g. `/usr/local/Cellar/zsh/5.6.2_1/share/zsh/functions/_git`)
+
+Both of these were on my `$fpath`.
+
+I then discovered that the author of the Hub Zsh completions seems to advise the usage of Zsh's official Git completions, rather than Git's official completions: https://github.com/github/hub/pull/295#issuecomment-14324233
+
+I removed Git's official completions with `rm /usr/local/share/zsh/site-functions/_git` and then Hub Zsh completions seemed to work as expected. That is, when I type `git pull-request -<tab>`, arguments *do* complete.
+
+I would like to suggest that we clearly document this caveat—Hub Zsh completions only seem to fully work when using Zsh's official Git completions, rather than Git's official completions—along with instructions for how to use Zsh's official Git completions instead.
+
+/cc @goodell "
+Docs: mention that comma-separated lists must not have spaces,"This was tripping me up for so long. I eventually discovered the problem was my spaces, re. https://github.com/github/hub/issues/1287#issuecomment-250454584."
+Hub doesn't work properly after username change,"Time ago my username at github was `gjuniioor` so I changed to `gildasio`. After that `hub` doesn't work properly.
+
+Look, I can't create a repository with `gildasio/test` argument but with `gjuniioor/test` it works.
+
+![hub_bug](https://user-images.githubusercontent.com/6231305/48806660-cb806000-ecf9-11e8-8f0a-fad4500defe9.png)
+"
+Store proxy in hub config,"I have a requirement wherein I have to use different proxies for reaching public GitHub vs GitHub enterprise deployment.
+
+This would be made much easier if the `hub` config file could keep `http_proxy` settings separate for each host. "
+Support multiple github accounts by allowing different hosts for Github API vs git operations,"I'm using an increasingly common hack to allow me to use multiple github accounts - one private and one for work - where I have two SSH config entries, one for `github.com` for my private account, and one for `github.com-work` for my work account.  See https://medium.freecodecamp.org/manage-multiple-github-accounts-the-ssh-way-2dadc30ccaca for more on this approach.
+
+I can convince some hub commands to work this way, as long as I have an existing cloned repo with an origin pointing to `github.com-work` and my GITHUB_HOST unset or set to `github.com`.  But some operations, such as `hub clone`, won't work no matter how I tweak configs, because they use the same GithubHost value both for git commands and for github API calls:
+
+```
+hub clone mywork/myproj
+> GET https://api.github.com/user
+< HTTP 200
+...
+$ git clone git@github.com:mywork/myproj.git
+remote: Repository not found.
+````
+I want it to do `$ git clone git://github.com-work...` instead, so the correct ssh key will be used.
+
+If I set `GITHUB_HOST` to `github.com-work` then the API calls don't work because the host is invalid. (they don't even work if I set up a hacky `/etc/hosts` redirect, because then the https certificate is invalid)
+
+It'd be great if we could have an optional `GITHUB_API_HOST` variable or some other way to specify that the API is on a different URL to `git clone` commands.  I suspect this would also help several other issues here related to github enterprise users."
+Warn about an unpushed branch when opening a pull-request,"I think this was previously the behaviour (before the change from `#` to `>8` for the `PULLREQ_EDITMSG`).
+
+Basically I'd like to see the commit messages in the text by default, so I can easily move them above the line if I want. Having the default Pull Request template text there as well also makes sense, maybe template above the scissors by default and commit messages below would make sense.
+
+Basically something like this:
+
+```diff
++<Github PR template>
+
+# ------------------------ >8 ------------------------
+# Do not modify or remove the line above.
+# Everything below it will be ignored.
+
+-<Github PR template>
+
++<commit messages>
+```
+
+Swapping ""commit messages"" and ""Github PR template"" would be fine too I guess."
+Don't store authentication credentials in $XDG_CONFIG_HOME,"`hub` stores an oauth token in `$HOME/.config/hub/`. This behavior is a deviation from the XDG directory standard with serious security implications. XDG_CONFIG_HOME is intended to store configuration files only, which means many users may accidentally back up this sensitive data via insecure means to insecure locations.
+
+A much better place to put passwords and cryptographic keys would be in $XDG_DATA_HOME (on my system this is `/home/ryan/.local/share`).
+
+Further reading: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html"
+pull-request with labels that don't exist should not create the labels,"Hi team,
+
+```
+hub pull-request -l existinglabel,nonexistentlabel
+```
+
+This command will assign both `existinglabel` and `nonexistentlabel`, creating the latter as part of the process.
+
+I think I would've expected it to ignore the non existent label rather than creating it.
+
+Perhaps there could be a configuration setting to disable this behaviour? I can see that it might be useful to some people that it does create the label."
+Add .config/hub yaml file example,"I spend a good time trying to find an example of `.hub/conf` file and I understand how it works looking the tests, but I was not sure about the file format.
+
+As my 2fa does not work, I never got the chance to see the file being generated. I decide to share an example in the official docs. Not sure if that place is the best, but I figured how that I needed that file exactly from that point."
+docs(index.html): add hub.protocol config example,https://github.com/github/hub/issues/1596#issuecomment-336800484
+Add Go module,"The list of required directive is automatically detected by ""go mod"" from
+Gopkg.lock file."
+Add chromeos install section to README,
+OAuth token not resent after temporary redirect,"After Hub follows a temporary redirect, it does not seem to set the `Authorization` header for the subsequent request
+
+I'm using GitHub enterprise.
+```
+HUB_VERBOSE=1 hub pull-request                                             
+$ git rev-parse -q --git-dir
+$ git remote -v
+$ git config --get-all hub.host
+> GET https://git.foo.com/api/v3/user
+> Authorization: token [REDACTED]
+> Accept: application/vnd.github.v3+json;charset=utf-8
+< HTTP 307
+< Location: https://gh.foo.com/api/v3/user
+<a href=""https://gh.foo.com/api/v3/user"">Temporary Redirect</a>.
+
+
+> GET https://gh.foo.com/api/v3/user
+> Accept: application/vnd.github.v3+json;charset=utf-8
+< HTTP 401
+{""message"":""Must authenticate to access this API."",""documentation_url"":""https://developer.github.com/enterprise/2.14/v3""}
+```"
+Feature Request: Ability to associate a pull-request with a gh-project,Almost all of the fields that can be associated with a pull request using `hub pull-request` are exposed except for github projects.  It would be nice if hub had the ability to pass in the project id or name that a PR should be associated with.
+Use /dev/tty when possible for prompts,Closes #1225
+truncate .git/PULLREQ_EDITMSG when creating a pull request,"If I want to create a pull request but when writing the pull request message I want to cancel and ctrl+c the hub command and then try again later, it'll reuse the old pull request message which is annoying as I might have updated the commit message and want it to automatically appear."
+`hub clone public/repo` should not prompt for authentication,"I commonly drop `hub` onto a new laptop just for the `hub clone user/project` syntax. It'd be awesome if that usage didn't require authentication for public repositories. In fact, I'd ideally rather it didn't prompt for authentication at all and just translated the URL; I configure `git` to use `ssh` for all github repositories and so my ssh keys will silently kick in and allow the clone to succeed."
+Create '--no-track' option for hub pull-request,"In my daily work, I always run
+
+    git branch -u origin/master
+
+on my feature branches to keep track of the master branch which I will eventually merge in to. It bothers me that `hub` resets my tracking branch after creating the PR, so that I have to re-run `git branch -u origin/master`.
+
+We could also discuss changing the default behavior of hub to opt-in to `--set-upstream` rather than to opt-out. But for now I am happy as long as I get this option, so that Hub can co-operate smoothly with my workflow."
+add methods to config to return api base url and upload url,"I'm writing a tool to synchronize a standard set of labels across my repositories as GitHub has not implemented this feature yet. I'm using https://github.com/google/go-github
+
+I was thinking about how to deal with authentication when I realized this package already exports 
+
+https://github.com/github/hub/blob/c60ca203c9ecfdb8e0693a0fc0edfa9d58dd00d1/github/config.go#L301
+
+Which makes it extremely easy to reuse the same authentication as hub itself and so I don't have to implement anything special. This is very convenient. It'd be even better if we added a method to the config struct to return the correct Base and Upload URLs for the APIs. E.g. `api.github.com` vs `exampleenterprisegithub.com/api/v3`. This would make it dead simple to use [google/go-github](https://github.com/google/go-github) with `hub`'s config file and authentication.
+
+If this is approved I can work on PR."
+"Editing release tag from command line always results as ""untagged-XXXXX""","So basically I'm trying to automate my release process by creating a draft ""proxy"" release and I would like to edit its tag version when I'm about to actually publish the release.
+
+The thing is, I realized that:
+1_ When I try to edit anything regarding the release, the tag ends up being something like ""untagged-1421c803c66244c71c64""
+2_ Can we even change _just_ the tag for a draft release?
+
+**STEPS**
+- So first I apply this (which works):
+```
+gabu$ hub release create --draft -m ""Proxy release"" -t ""release/e2e-qa"" v0.0.1-proxy
+https://github.com/<my_team>/<my_project>/releases/tag/untagged-eb4323448616e25da835
+gabu$ 
+```
+
+✅
+<img width=""884"" alt=""screen shot 2018-07-25 at 17 53 55"" src=""https://user-images.githubusercontent.com/14102252/43190524-31c6c6ba-9034-11e8-9cf6-bd434202a76d.png"">
+
+✅
+<img width=""768"" alt=""screen shot 2018-07-25 at 17 54 07"" src=""https://user-images.githubusercontent.com/14102252/43190525-31f21950-9034-11e8-803d-cf4b198df71c.png"">
+
+
+
+- But when I try to edit something (let's say just the title):
+```
+gabu$ hub release edit -m ""This is such an amazing title"" -t ""release/e2e-qa"" v0.0.1-proxy
+gabu$ 
+```
+
+✅
+<img width=""882"" alt=""screen shot 2018-07-25 at 18 00 34"" src=""https://user-images.githubusercontent.com/14102252/43190768-bcef3510-9034-11e8-9393-368a31c50132.png"">
+
+❌
+<img width=""752"" alt=""screen shot 2018-07-25 at 18 00 44"" src=""https://user-images.githubusercontent.com/14102252/43190769-bd1a2964-9034-11e8-8d3e-ab68d16c6407.png"">
+
+Which ends up being the original name of the draft release tag that is `untagged-eb4323448616e25da835`
+And when I try to `hub release edit` again with the latter tag name, it ""works"" even though it didn't work at the very first edit attempt.
+
+That said, I tried somehow to edit the `tag` by just adding an additional argument in the end (just trying here...) but again it would result in no changes except for the renaming of the tag to `untagged-eb4323448616e25da835`.
+
+Which makes me wonder: is this the expected behavior?
+And most importantly... can we actually **change the tag of a draft release** by command line?
+
+I feel like I'm missing something trivial here...
+Thanks in advance!"
+"Missing bash completion function for ""issue"" subcommand","Hi there.
+
+I think this one is pretty self-explanatory. It looks like a `_git_issue` completion function was never made yet in the bash completions file."
+Add --wait flag to ci-status,"I have my releases gated on `hub ci-status` passing. It would be handy to have a `--wait` parameter that waited for a success or failure before returning.
+
+This would mean I could start a deploy command, knowing that when the tests succeed a deploy will start, without needing to wait at the terminal running `hub ci-status`. The alternative is to write my own while loop which runs `hub ci-status` but that feels a bit dirty, and I think this kind of thing could be more widely useful?
+
+Here's what I wrote. I added a 15 second sleep between each call, hopefully this isn't too much polling on GitHub's API?
+
+```bash
+# Turn off logging and immediate exit on fail, as we are going to loop on ci-status
+set +ex
+
+hub ci-status ${SHA}
+RET=$?
+# Exit code of 2 means pending
+while [ ${RET} -eq 2 ]; do
+  sleep 15
+  hub ci-status ${SHA}
+  RET=$?
+done
+
+# If we didn't get a successful CI run (0) then exit
+if [ ${RET} -ne 0 ]; then
+  exit ${RET}
+fi
+
+# Turn immediate exit back on
+set -ex
+```"
+hub compare doesn't default END to current branch,"I have hub 2.5 installed on my new laptop via homebrew. When I run ""hub compare"" I get a usage message instead of getting a comparison for the current branch. I verified that this isn't an issue in hub 2.2.3 on my older computer. 
+
+Let me know if there's anything you need from me to help repro. "
+Unknown CA Authority for github.com,"On my MacBook Pro, running High Sierra, using `hub` installed via homebrew:
+
+```
+$ GITHUB_TOKEN=[REMOVED] hub pr list
+Error fetching pull requests: Get https://api.github.com/repos/username/project-foo/pulls?per_page=100&: x509: certificate signed by unknown authority
+```
+
+Note this is different than #852 as this project using ordinary github.com, which uses a normal TLS certificate signed by a well-known root CA."
+Auto-completion stop to work with Git version 2.18.0,"I use macOS and Homebrew to install/update Git and hub.
+
+After upgrade Git (`brew upgrade git`) from version `2.17.1` to `2.18.0` the auto-completion of the GitHub commands provided by hub (`browse`, `ci-status`, `compare`, etc...) stop to work in Bash.
+
+Previous configuration with auto-completion working:
+```
+$ git --version
+git version 2.17.1
+hub version 2.4.0
+```
+
+Current configuration with auto-completion not working:
+```
+$ git --version
+git version 2.18.0
+hub version 2.4.0
+```
+
+I was able to reproduce the error in two different machines."
+"Is it ""policy"" that installing hub does not wrap git by default? Or...?","I'm a bit confused, on a couple of issues.
+
+Is it something like ""policy"" that _completions_ for git (wrapping hub) be installed by default, but that users **must** themselves make another, manual intervention in order to have this alias/wrapper enabled by default?
+
+Or is this based on the assumption that doing so isn't possible without the installer or package manager editing either a _**user**_ or _**system**_ config file (which _is_ a bad idea)? Did prior versions of package manager formulae and/or install scripts do this, but this has been changed?
+
+Because as I read https://hub.github.com, I should be able to `brew install hub`, after which I should be able to invoke `git version` and it will show me a hub-wrapped-git, but this definitely is not the case.
+
+I ask because, while I agree that installers shouldn't make changes to user or root profile/config files, there **are** other, better, middle ground options these days. For example, `fish` ""now"" (I'm not actually sure how recent this addition is, but in any case) includes a ""vendor functions"" directory, as well as vendor completions; this would allow for a wrapping function to be added by default, without modifying config files.
+
+I bringing this up not because I'm hugely invested in the convenience of not having to add a line to a config/profile file.
+
+Its actually because I take serious issue with your **[very bold assertion that is somehow ""safe""](https://github.com/github/hub/blob/master/README.md#aliasing)**.
+[Let me know and I can split this out into a separate issue from the ""vendor function"" suggestion;
+but there's a reason I didn't lead with this part, as I don't want to call too much attention here.]
+
+Hear me out: sure, you're not overriding any underlying `git` functionality. But what if (in any of dozens of ways) something happens to the `hub` executable, or the user's `$PATH` is modified, or simply, another alias is added at some point. I'm not sure I even need to give you a proof of concept here:
+
+```sh
+alias git=hub
+# Sometime later, some script is run, and either added to the same file, or by sourcing another...
+alias hub='printf ""\033[31mUh-oh!\033[0m\n""; command hub'
+# And now try:
+git version
+```
+
+With a vendor **function**, there are several advantages, in that:
+- You can make sure `command hub` is being invoked, avoiding alias injection (and you could add code to `hub` itself making to sure its not being invoked by a wrapper that had path priority)
+- Many package managers require at least a user to be in an admin group, if not sude/root, to add or modify these functions.
+- But you can still give a standard user the ability to opt out, by, say, setting something HUB_DO_NOT_WRAP_GIT.
+- A function (as opposed to simply an alias) can also include a fallback, so if (for instance) something happens to `hub` (`brew unlink hub`? During an upgrade?), `git` invocations will continue to function.
+
+As an example (homebrew and fish), add this `git.fish` to `/usr/local/share/fish/vendor_functions.d`:
+```fish
+# git wrapper function for hub (includes fallback)
+
+not command -sq hub; or set -q HUB_DO_NOT_WRAP_GIT
+and functions -e git
+
+command -sq hub; and not set -q HUB_DO_NOT_WRAP_GIT
+and function git --wraps hub
+  command -sq hub
+  and command hub $argv
+  or command git $argv
+  return $status
+end
+```
+
+So, let me know. Maybe I'm missing something. Maybe you disagree. Maybe you have a better solution. But if you like, I could have PRs ready for you and homebrew in a couple hours. If you wanted. (For the fish implementation, which could be used as a rubric; I'd let others take over for the other shells).
+
+❦ Geoff"
+Problem setting up hub for Github Enterprise using SSH,"I am unable to figure out how to git `hub` working with GHE over SSH. I see that others have had similar issues, notably [this one](https://github.com/github/hub/issues/1612), but none of the articles I've read have had solutions that have worked for me. Of course, I didn't read all of them, so let me know if there is an answer already posted that I missed.
+
+Here's my relevant info:
+- Windows 10, Fall Creator's Update
+- git version 2.17.1.windows.2
+- hub version 2.2.9
+- `git` is not aliased to `hub` yet (since it's not fully working yet)
+
+I have set the following environment variables. I have tried this both in cmd.exe and in Powershell with similar results, so I will explicitly list both here in case it helps. I'm not sure where I got the idea that I needed both `GITHUB_HOST` and `HUB_HOST` - need to look at the docs again, as I have a feeling that `HUB_HOST` is not needed _as an environment variable_.
+
+For cmd:
+- GITHUB_HOST=github.ourserver.net
+- HUB_HOST=github.ourserver.net
+- HUB_PROTOCOL=ssh
+- HUB_CONFIG=~/.config/hub
+
+Similarly, for Powershell:
+- $env:GITHUB_HOST=""github.ourserver.net""
+- $env:HUB_HOST=""github.ourserver.net""
+- $env:HUB_PROTOCOL=""ssh""
+- $env:HUB_CONFIG=""~/.config/hub""
+
+I created a personal access token and then created a new file named ~/.config/hub with these contents:
+> ourserver.net
+> \- user: cleonard
+> \- oauth_token: \<my token\>
+> \- protocol: https
+
+So here is the problem. Whenever I try to run any command that requires `hub`, I am prompted for a username (on our server, so `hub` at least recognizes which server to talk to!). The username I type is not visible on the screen, and when I hit enter, I am shown a prompt for a password, but immediately shown an error message. I'm attaching a screenshot for you to see exactly what I mean.
+![image](https://user-images.githubusercontent.com/1082694/41805948-2fb3b200-7678-11e8-8c0c-37796fae65c0.png)
+
+The way I authenticate to our GHE with normal `git` commands is via SSH using RSA keys. That's how I'd like to use `hub` as well. Is this possible?
+
+Finally, partway through writing up this issue, I tried running `hub alias`, which told me `Error: couldn't detect shell type. Please specify your shell with ""hub alias <shell""`. So I guessed and tried `hub alias powershell` and got what might be a very useful error message stating that Powershell is not a supported shell but a number of \*nix shells are supported. Is this true? I don't want to delete everything I typed up, in case you *do* support Powershell! But if I need to use bash, will that work in WSL?
+
+Thanks for reading all of this, and for any reply. Looks like a nice tool (my goal is simply to create pull requests from a CLI :) ).
+
+**UPDATE:** my original post had my actual `oauth_token` in it so I have deleted that one and generated a new one. 
+"
+Provide a way to ignore hub's aliases,"I have my own ""git sync"" alias which does the right thing in my environment. Unfortunately hub recently introduced a ""hub sync"" command which does things I don't want (deletes branches, doesn't pull). Additionally, as noted in a below comment, it may even result in data-loss.  I can't seem to find a way to make use of hub as a proper around git without having its sync get in the way. One option is to introduce yet another wrapper that dispatches to either ""git"" or ""hub"" depending on the command provided, though this would require more intimate knowledge of git's command line parsing.
+
+The best way I forward I could think of is to do one of the following:
+
+(a) ensure that git aliases override hub's commands.
+(b) provide a way to bypass hub's commands per-command.
+
+Obviously I'm open to other solution that solve my problem."
+`hub pull-request` fails with an obscure error if the branch hasn't been pushed,"Per #1715 the error message received when the branch hasn't been pushed does not make it clear what the problem is. It seems the error message comes from [line 356](https://github.com/github/hub/blob/master/commands/pull_request.go#L356). I'm not familiar enough to know offhand if this error handling might be triggered by something other than a branch that hasn't been pushed, but changing it to 
+
+`Invalid value for ""head"", did you push your branch to the remote?`
+
+would be very helpful. I'm happy to change the error if that's all that's needed, but I'm not very comfortable in Go."
+"pull-request: different ""origin"" and ""upstream"" remote repo names","Have an edge case here, I think, where the ""upstream"" remote repo has a different repo name from the ""origin"" repo.
+
+I haven't found a way to make a pull request into the ""origin"" repo without removing the ""upstream"" remote. 
+
+Is there a way of doing it? "
+Publish a Snap,I think would be nice to have a Snap (https://snapcraft.io/store) with automatic update.
+Feature request: Support checking/listing squash merged branches,"Support checking/listing branches that have been squash merged into a particular branch (e.g. master) by extending the `git branch --merged` command. The native `git branch --merged` command does not detect branches merged by this method, but many GH projects do squash merging to reduce the number of commits on the repository.
+
+This feature would make it trivial to clean up local branches that have already been squash merged."
+Aliasing git to hub breaks git autocompletion in zsh,"Using either of
+
+`alias git = hub` or
+
+eval ""$(hub alias -s)""
+
+breaks auto completion for git in zsh.
+
+Is there a way around this?
+"
+Fix base branch detection during `hub pull-request`,"Pull requests now use `default_branch` from the repository configuration (JSON) when no `.git/refs/remotes/origin/HEAD` is present. If the two differ, a warning is printed to the console and the local base branch is used.
+
+This PR covers the following scenarios:
+
+* There is no `.git/refs/remotes/origin/HEAD`, uses `default_branch` (from JSON)
+* The branch in `.git/refs/remotes/origin/HEAD` differs from `default_branch`, uses `.git/refs/remotes/origin/HEAD` and prints a warning to the console (see below)
+
+Example warning:
+
+```console
+$ hub pull-request
+Warning: Local base branch differs from remote (got: developmen, want: development), to fix:
+        git remote set-head origin --auto
+```
+
+I considered writing a test but the tests don't pass (even on `master`). Running macOS 10.13.3, Go 1.10, Git 2.16.2. The failing test output is available in [this gist](https://gist.github.com/mafredri/eaa34e30ac8022a348c19ab07edf4d95).
+
+Running the tests also made changes to my personal git configuration (including alias modifications, not cool 😢). Lucky I've got it in version control so no harm done.
+
+Fixes #1538."
+`hub compare` doesn't handle range as documented,"The documentation for `hub compare` says
+
+> If a range with two dots (""a..b"") is given,
+> it will be transformed into one with three dots. If <START> is omitted,
+> GitHub will compare against the base branch (the default is ""master"").
+> If <END> is omitted, GitHub compare view is opened for the current branch.
+
+This largely doesn't appear to be correct. The issues I see:
+
+* `hub compare release..kballard/mybranch` does not transform into 3 dots, it leaves it as 2 dots, and the GitHub UI opens a comparison against `master` instead.
+* `hub compare release...` does not default the end to the current branch but instead opens a comparison for `release` against an unspecified branch.
+* `hub compare ...kballard/mybranch` doesn't work either, it opens a comparison where the base branch is unspecified.
+
+About the only part of this description that is correct is if both <START> *and* <END> are omitted, it compares the base branch against the current one.
+
+Tested with hub version 2.2.9."
+Make remote URLs default to HTTPS,"Fixes #1596 and closes #1318 
+
+This makes URLs default to using HTTPS instead of the plain git protocol (`git://`), especially for `hub clone` which will not use SSH even for private repos/repos where you have push access to unless it is overridden by setting `hub.protocol` to `ssh`.
+
+I think I got all the tests related to this change. Let me know if I missed out anything!"
+Edit existing issues,"Hi all,
+
+Is it possible to edit existing issues in a repo?
+
+I checked the manpage and `hub issue --help`, but there is no information about editing a existing issue. 
+
+I know there are other tools https://github.com/node-gh/gh, https://github.com/stephencelis/ghi, which can do this.
+
+Perhaps these could be merged into `hub`, instead of replicating their work.."
+request: post-pull-request hook,"I'd love to have a hook that fires after the successful creation of a pull request. My use case: setting a per-branch config variable `prbranch=<the triggering pr's base branch>`, which could be used to decorate my prompt to tell me ""a PR was opened for this branch, and it hasn't been merged"". 
+
+I imagine this would be made possible by some of the same work as #1179 
+
+(This would get stuck on closed-but-not-merged PRs, so even better would be a way for hub to query for PR info and store it somewhere. That's a much bigger request, and I don't know if it's in the hub scope)"
+[Feature] implement --org for pull-request command,"Although there is a more verbose syntax available via the head flag, in a standard use case where you want to do operations on behalf of an organization, the workflow is not really clean:
+
+What we observe:
+- If i did the pull with --org flag, the remote will not coincide with the github user
+- If I do a standard hub pull-request, **I do not get any helpful error message** (no check is implemented if the user name remote exists)
+
+What we would like to observe:
+- Better checks and error messages
+- `--org` flag for the `pull-request` command, so that the behavior get's consistent and we avoide the more verbose syntax.
+
+I would even suggest to implement the `--org` flag top level on `hub`, so all operations get properly name spaced, if this would not conflict with upstream git."
+"If the pull request already exists, update the description, and open it in the browser if -o is given","Actually this is two loosely related issues, that come up together due to the way I use this awesome tool.
+
+Repro:
+  1. `git pull-request -b development -m ""OLD MSG""`  # Pull request is created
+  2. `git pull-request -b development -o` # Invoke again
+
+Expected:
+ - the current PR description should be shown in the editor with the possibility to modify it and then update the description of the PR
+  - the URL for the preexisting PR should be opened in the browser.
+
+Actual:
+
+```
+Error creating pull request: Unprocessable Entity (HTTP 422)
+A pull request already exists for xx:xx
+```"
+Can't interact with GitHub Enterprise installations over macOS VPN,"If your GitHub Enterprise instance is only accessible via VPN, you get this error on macOS:
+
+```shell
+$ GITHUB_HOST=github.my-company.com hub clone owner/repo
+Get https://github.my-company.com/api/v3/repos/owner/repo: dial tcp: lookup github.my-company.com on 10.0.1.1:53: no such host
+```
+
+It looks like this is a problem with Go's DNS resolver. See https://github.com/hashicorp/terraform/issues/3536 and https://github.com/golang/go/issues/12524.
+
+It looks like the fix is to build with `CGO_ENABLED=1` on Darwin. That causes the native DNS resolver to be used, which can correctly handle VPN.
+
+Would you be willing to use CGO for Darwin?"
+Editor textwidth setting overwritten by hub,"See [this line](https://github.com/github/hub/blob/cbcc349e39c359ea2bd1f3f0d2ad56463750a905/github/editor.go#L117) in the editor; `hub` manually sets the textwidth for a new editor (usually a commit message, pull-request, &c.).
+
+```go
+editCmd.WithArg(""set ft=gitcommit tw=0 wrap lbr"")
+```
+
+Why does this happen? I prefer a `tw=80` and have that setup in my `.vimrc`, but get overridden seemingly at will.
+
+I could solve this probably by using `.vim/after/ftplugin/gitcommit.vim`, but I'd rather just not have `hub` assume too many settings for me. 
+
+Proposed fix: `set ft=gitcommit` and leave it at that--trust users to have other settings for their editor.
+Change to
+```go
+editCmd.WithArg(""set ft=gitcommit"")
+```"
+Split git and hub completion scripts,"Not everyone that installs `hub` wishes to use the `git` alias. Unfortunately, we can't install bash-completion for just `hub`, because the script that provides it also takes over the `git` completion.
+
+Please provide separate completion scripts for both `git` and `hub` so that they can be installed independently."
+hub clone should use HTTPS instead of SSH by default so the GCM can be used,"When interacting with a GitHub repo via HTTPS, the [Git Credential Manager for Windows](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) is used by default (it is installed by default with Git for Windows). The GCM is great, because it supports GitHub 2FA, so you don't need to create a token or SSH key but can just log in with your username, password and 2FA token.
+
+However, `hub clone` uses the SSH URL of the repo by default (instead of the HTTPS URL). This means that when a user installs hub and blindly does a `hub clone` on a repo, they won't be able to use the GCM (and thus will need to do extra configuration if they have 2FA set up).
+
+This seems like an oversight. Therefore, I propose using HTTPS instead of SSH by default (at least on Windows)."
+Issue creation doesn't provide `--project` flag for specifying the project,"This would be very useful for me to add many issues to a particular project from the command line, much in the same way as I do when I am creating an issue on my repo, before allocating to a column."
+[Feature Request] Allow `merge` to delete branches locally and remotely,"On my current flow it'd be ideal if I had the option of deleting both remote and local branches when I merge a PR.
+
+I could script it, but the way `hub` works when merging is using an URL which I don't have the branch name at hand."
+Implement `pr show`,"`hub pr show` will display any existing pull requests that would have
+been created by `hub pull-request`. For any pull requests it finds, it
+prints out the link to the pull request.
+
+If no pull requests are found, this will result in an error. That means
+it can be used to check for any existing pull requests before attempting
+to create one using `hub pull-request`.
+
+Fixes #897. Replaces #1498. Some code was taken from #1498 as a starter
+for this pull request."
+"add retriever.sh, #987: cross-platform download script","Hello,
+
+This is my attempt to provide a cross-platform download script for hub, it works like this:
+
+```
+$ sh ./retriever.sh 
+hub-linux-amd64-2.2.9.tgz
+hub-linux-amd64-2.2.9/
+```
+
+It should work on windows/macos/linux/freebsd but I only tested on Linux, Ubuntu 16.06
+
+Bests"
+Supported pull subpage to browse command,"Supported `pull` subpage to browse command.
+I want to open Pull Request related to the current branch.
+
+related #688"
+Add support for sending client certificates,"Adds support for sending a client certificate to a GitHub Enterprise server.
+
+The client certificate should be encoded with PKCS12 and its path should be set with the configuration option `client_certificate`.
+
+@mislav Can I possibly get a sanity check on this one? I ended up pulling in the PKCS12 package simply because it seems like the most convenient way of encoding a certificate and key. We'd otherwise need to specify the paths to two different files, or stack PEMs into a single file, which I don't think is as widely supported. The nice part about this approach is that something like Mac OS's Keychain makes it quite easy to export a cert/key pair as a `*.p12`.
+
+I'll warn you up front that there is a small possibility of having to add new miscellaneous improvements in the future to help support a more flexible version of this feature. For example, I've required that the PKCS12 file not be passphrase-protected for simplicity, but allowing a passphrase through hub might be desirable for someone else. Others might like to see support for extracting a certificate directly from the Mac OS Keychain (cURL built on Mac supports this) or support for other encodings. It's also possible that no one besides me will ever want or need this option.
+
+Any thoughts? Thanks in advance!
+
+Fixes https://github.com/github/hub/issues/1494."
+Allow edits from maintainers,"I added the option `--restrict-maintainer-modfy` to `hub pull-request` command to off the checkbox of 'Allow edits from maintainers' in github\.com Web UI.
+And also, restrict-maintainer-modfy can be configured at `~/.gitconfig` like a following code.
+
+```
+[hub]
+  maintainerModify = false
+```
+Default value of  restrict-maintainer-modfy is `false` since github\.com Web UI is flase (means **Allow** edits from maintainers )
+
+ref. #1349
+"
+Check modtime of message file after edits,"Fixes #1428.
+
+This change would affect the behavior of the editor for issues, releases, and pull requests by setting the modified time of the message file 5 seconds back before it is edited, then verifying that the time-stamp changed.
+
+Some existing tests had to be modified to reflect that the editor must at least `touch` the message file.
+
+"
+pull-request is not setting base correctly,"I have a repo that had (at one point) github configured to use a default branch _other than_ master. (It was an accident, but the old default was `FOUN-514-create-json-schema`)
+
+GitHub has since been fixed, so the default is now `master` as it should be. (This was fixed a _long_ time ago.)
+
+However, whenever hub begins a new PR, it defaults the base to that old default branch: `FOUN-514-create-json-schema`. I've checked the repo's git config, and all is as it should be (no straggling references to that old branch). I've checked in `~/.config/hub` but I don't see anything in there persisting the old default.
+
+Does hub get this from the github api each time? Or is it persisted somewhere locally that I can flush?
+
+It's worth noting that GitHub sets the base branch correctly when opening a PR via the UI (as confirmation that the default branch is set correctly).
+
+
+PR message generated by hub:
+```
+
+# Requesting a pull to webanalytics:FOUN-514-create-json-schema from webanalytics:github-rename
+#
+# Write a message for this pull request. The first block
+# of text is the title and the rest is the description.
+```
+
+```
+$ git remote show origin 
+* remote origin
+  Fetch URL: git@github.shuttercorp.net:webanalytics/analytics-schema.git
+  Push  URL: git@github.shuttercorp.net:webanalytics/analytics-schema.git
+  HEAD branch: master
+  Remote branches:
+    github-rename     tracked
+    master            tracked
+    qa                tracked
+    refactor-test     tracked
+    refs/pull/1/head  tracked
+    [snipped 'pull' refs]
+  Local branches configured for 'git pull':
+    github-rename merges with remote github-rename
+    master        merges with remote master
+  Local refs configured for 'git push':
+    github-rename pushes to github-rename (up to date)
+    master        pushes to master        (up to date)
+```
+
+```
+$ hub --version 
+git version 2.14.1
+hub version 2.3.0-pre10
+```
+
+(The issue existed with hub 2.2.9, but I upgraded to the prerelease in hopes the new version fixed it.)"
+New pr command is confusing,"Having both a `pull-request` and a `pr` command is super confusing. They both mean the same but do different things. I even created a git alias before from `pr` to `pull-request` which suddenly didn't work anymore. I doubt I'm the only one that did this. 
+
+Why is `pr checkout` not a subcommand of `pull-request` instead? You could even let `pr` bare do the same as `pull-request` if you want to keep the shorter variant."
+"Tab completion for branch name prints ""warning: ignoring broken ref""","Attempting to tab-complete the base branch name:
+
+```bash
+hub pull-request -o -b or<TAB>
+```
+results in:
+```bash
+hub pull-request -o -b orwarning: ignoring broken ref refs/remotes/origin/HEAD
+```
+
+```
+$ bash --version
+GNU bash, version 4.4.12(1)-release (x86_64-apple-darwin16.3.0)
+[snip]
+$ hub --version
+git version 2.13.3
+hub version 2.2.9
+```"
+Updating a pull request,"I would like to update the description of a pull request.
+
+Is this already implemented or can I make a feature request of this?
+
+See: https://developer.github.com/v3/pulls/#update-a-pull-request"
+pull-request error:  not currently on any branch,"My problem: I could not use pull-request at all, I kept getting this error
+```
+$ git pull-request -b <user>:master -h DancingQuanta:extra-syntaxes
+Aborted: not currently on any branch.
+```
+I am on Cygwin with Windows executable `hub`."
+"put defaults for frequent reviewers, or other CLI parameters always used in a pull-request in a .rc file of some kind","I have several reviewers and labels that I would like to add by default to a pull request, it would be nice to have a .rc file of some kind that I could specify some defaults for pull-requests"
+[WIP] Adding 'git pull-request —show' to list the URL(s) for existing PRs,"Adding a new switch to the `pull-request` command to show the URL, if the PR already exists (helps solve #897, #1107 and #1451)
+This is a prerequisite for other features, such as #867
+
+Keeping WIP because I want to add tests for this."
+Support client certificates for GitHub Enterprise,"This is a bit of a special snowflake situation, but our GitHub Enterprise has been configured with an additional layer of security whereby a client certificate needs to be sent along with all requests to it. 
+
+I've built support for this and am wondering if I could possibly send it upstream. Would you be open to a patch that allows `hub` to support this through either something like a configuration option or an environmental variable?
+
+My proposed interface would be a little like [how client certificates are sent in cURL](https://gheeknet.wordpress.com/2011/07/22/how-to-use-curl-to-access-a-https-url-using-a-client-certificate/), probably requiring that a certificate and private key are stacked into a single PEM-encoded file (with [possible PKCS#12 support through `golang.org/x/crypto/pkcs12`](https://godoc.org/golang.org/x/crypto/pkcs12)). It might be better as environmental variable given how few people are going to ever need this (a little like configuring a proxy).
+
+Any thoughts? Thanks!"
+Complex git core.editor setting fails with hub,"I have my `core.editor` set to something complex (to get it to work cross machine):
+
+```
+[core]
+    editor = ""which mvim > /dev/null 2>&1 && mvim --remote-tab-wait-silent $@ || vim""
+```
+
+When trying `hub create issue`, I get:
+
+```
+/Users/ehesselink/.local/bin/mvim
+/Users/ehesselink/.local/bin/mvim
+/usr/bin/vim
+error using text editor for issue message
+```
+
+The setting works with plain git though. I see this was discussed before in #881, but that was marked as fixed.
+
+```
+$ hub version
+git version 2.9.2
+hub version 2.2.9
+```"
+Git checkout on existing branch no longer works,"Hey, this might be some regression in git (configuration change), but this used to work just fine when I tried to checkout a PR that was already fetched (when somebody force-push into it):
+
+```
+git checkout https://github.com/theforeman/foreman/pull/4260
+From github.com:theforeman/foreman
+ ! [rejected]        refs/pull/4260/head -> swapab-18381-pxe-loader-attr-hostgroup-form  (non-fast-forward)
+```
+
+I was trying to provide `--force` without any luck. What's wrong?"
+Add a link to the workaround for SSO with GHE,"While a more permanent solution is being developed, link to the
+workaround so that people can continue to use hub in their GHE
+environments.
+
+Related-Bug: #826
+Related-Bug: #384"
+"Remote specific protocol settings (configuration, feature request)","Would it be possible to have a default protocol specific to different commands?
+
+The use case I have in mind is having ssh access to all of my personal repositories (which I tend to refer to as `origin`), but only https access to upstream repositories (which I tend to refer to as `upstream`). 
+
+This acts as a safety measure, as I can easily push to `origin` over ssh, but need to go through additional steps to push to `upstream` repositories, for example when making a release and tagging that release through GitHub.
+
+↬@Carreau for introducing this method to me. "
+UX: quitting the editor without editing the default commit message template creates a pull request anyway,"I was creating a pull request for Ansible by running hub pull-request. It downloaded Ansible's PULL_REQUEST_TEMPLATE.md very helpfully and spawned Vim for me.  I remembered about issue #1377 and decide I didn't want `hub` to create a malformed PR for me, I'd rather create one by hand on the web.  So I quit vim with `:q!` without editing the blank message template.
+
+`hub` created a pull request anyway."
+if `hub clone` would clone into a repo that's already in the fork graph add a remote instead.,"say I did:
+
+```shell
+$ hub clone github/hub
+Cloning into 'hub'...
+remote: Counting objects: 159732, done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 159732 (delta 15), reused 0 (delta 0), pack-reused 159704
+Receiving objects: 100% (159732/159732), 67.91 MiB | 14.65 MiB/s, done.
+Resolving deltas: 100% (119124/119124), done.
+Checking connectivity... done.
+$ hub clone github/hub
+warn: destination path 'hub' already exists and origin is already github/hub.
+$ echo $?
+0
+$ hub clone graingert/hub
+destination path 'hub' already exists and new remote graingert/hub as graingert.
+$ echo $?
+0
+```"
+Add ability to view changes with pull-request,"I just discovered `hub` and like the idea of submitting pull requests via cli.  One thing I like about the web is that I can review the pull request changes at the same time I am submitting the request, which lets me make one last final review.
+
+Is it possible to review the changes of a PR with `hub` before submitting the request, preferably with the editor used to generate the PR message?"
+git create org/ to create within the org with the current directory's name,"It would be nice if `git create github/` created the repo in the GH org, but kept the behavior of using the current directory's name."
+git clone ends ... contains zero-padded file modes,"[tom1@achse /data/tomsData/github]$ git clone https://github.com/github/hub.git 
+Klone nach 'hub' ...
+remote: Counting objects: 13716, done.
+remote: Compressing objects: 100% (53/53), done.
+error: object 9ef2af57366f63deb751b92a8ca630fe598b10f0: zeroPaddedFilemode: contains zero-padded file modes
+fatal: Fehler in Objekt
+fatal: index-pack fehlgeschlagen
+[tom1@achse /data/tomsData/github]$ git --version
+git version 2.11.1
+[tom1@achse /data/tomsData/github]$ uname -a
+Linux achse 4.9.8-1-ARCH #1 SMP PREEMPT Mon Feb 6 12:59:40 CET 2017 x86_64 GNU/Linux
+
+no subdir hub was created 
+"
+"hub remote add sometimes set the url to ""git://""","Sometimes when I do a ""hub remote add"" to a project the remote is set to `git@github.com: . . .` instead of `git@github.com: . . .` aitized example:
+
+	zippy1981@zippy1981-Inspiron-15-7568:~/src/corporate-project$ hub remote add other-user
+	zippy1981@zippy1981-Inspiron-15-7568:~/src/corporate-project$ git fetch --all
+	Fetching origin
+	Fetching zippy1981
+	Fetching other-user
+	fatal: remote error: 
+	  Repository not found.
+	error: Could not fetch other-user
+	zippy1981@zippy1981-Inspiron-15-7568:~/src/corporate-project$ hub remote -v
+	other-user     git://github.com/other-user/corporate-project.git (fetch)
+	other-user     git://github.com/other-user/corporate-project.git (push)
+	origin  git@github.com:corporate-org/corporate-project.git (fetch)
+	origin  git@github.com:corporate-org/corporate-project.git (push)
+	zippy1981       git@github.com:zippy1981/corporate-project.git (fetch)
+	zippy1981       git@github.com:zippy1981/corporate-project.git (push)
+	zippy1981@zippy1981-Inspiron-15-7568:~/src/corporate-project$ 
+
+Manually setting the remote. with the regular git remote add works. "
+use https protocol instead of git protocol for public and keeping ssh for private,"From the manpage:
+
+```
+              If the repository is private or the current user has push access to the repository, hub
+              will  use  the ssh protocol for cloning. Use -p to select the ssh protocol uncondition-
+              ally. HTTPS protocol can be used instead by setting ""hub.protocol"" (see CONFIGURATION).
+```
+
+If the repository or private or the current user has push access to the repository, I want to use the SSH protocol. However, if the repository is not private or I do not have push access, I want to only then use the HTTPS protocol.
+
+I want to use ssh when I have access because it means I don't have to ever type my password on my server, it can just use my ssh agent to authenticate. But if I dont need access, I'd rather use the HTTPS protocol so that I don't always have to authenticate but still want a secure protocol."
+assign existing pull request,"What is the proper way to assign someone after a PR has been created?
+
+
+```
+$ hub pull-request -a 212556808
+Waiting for Emacs...
+Error creating pull request: Unprocessable Entity (HTTP 422)
+A pull request already exists for hubs:fix/show-nonjson-error.
+```"
+hub sync crashes if branch disappears during iteration,"Running hub sync, I see
+```
+warning: `gssdp-0.14.15' seems to contain unpushed commits
+```
+
+Once hub sync completes, I kick it off again. Before it gets to `gssdp-0.14.15`, while it's listing other branches with unpushed commits, in another shell I delete `gssdp-0.14.15`:
+
+```
+$ git branch -D gssdp-0.14.15
+Deleted branch gssdp-0.14.15 (was 265d3fc8da).
+```
+
+At that point, when `hub sync` reaches `gssdp-0.14.5` in its iteration, it crashes:
+```
+...
+warning: `googler-2.5.1' seems to contain unpushed commits
+warning: `gosu-1.13.5' seems to contain unpushed commits
+warning: `gpac-0.6.1' seems to contain unpushed commits
+warning: `gputils-1.4.2-1' seems to contain unpushed commits
+exit status 128
+```
+
+So it may benefit from sort of locking or at least shouldn't assume the branch will still exist when it gets to it."
+PULLREQ_EDITMSG sometimes shows incorrect head,"```
+% hub --version
+git version 2.10.2
+hub version 2.2.9
+```
+
+Sometimes the PULLREQ_EDITMSG shows an incorrect head branch in the top comment line. I'm not sure if this is because the PULLREQ_EDITMSG was created incorrectly, or if the PULLREQ_EDITMSG isn't being cleaned after a previous PR is opened and it is just being re-used, but occasionally I see a different head branch from the one I specified (or a different one from the currently-checked-out branch if I'm not specifying a head branch). However, I can still proceed to open the PR, and it gets opened with the correct head branch. So this is more of a cosmetic issue that causes confusion, and not a matter of hub incorrectly opening the PR.
+
+I'm sorry that I don't have more detailed information on how to reproduce, but I haven't yet noticed a pattern to what causes this. I'm hoping the fact that there are likely only a few places where PULLREQ_EDITMSG is handled, and the fact that hub still opens the PR using the correct head branch, are together enough to help narrow it down."
+hub sync isn't very effective when squashing and merging commits,"I want to use `hub sync` to update local branches but more importantly delete branches that have been merged already via the Github UI. The problem is, when running `hub sync` I get many warnings like the following:
+`warning: 'sean/branch_name' was deleted on origin, but appears not merged into master`.
+
+I'm assuming this is because the PR opened for this branch was merged using the ""Squash and Merge"" option so the SHA no longer matches. Is there a way to force `hub sync` to still delete branches in this case?"
+Allow edits from maintainers,Checkbox not enabled when creating PR from hub.
+Add ability to specify remote per-command,"Adds a flag to all appropriate commands to specify the remote to which the
+command should apply. If no remote is specified, the usual hierarchy of origin
+naming is adhered to.
+
+Fixes #1297"
+Use upstream as the base branch for new pull requests,"This is spawned from vermiculus/magithub#58.
+
+I'll probably be able to change the default behavior in my development, but I think it deserves to be considered as basic hub behavior as well. To my understanding, upstream is a more appropriate default across GitHub workflows. (At the very least, I can't think of any counter-arguments.)"
+Switch default remote URL to https,"Github doesn't seem to honor `git://` anymore.
+"
+Windows Installation: adding Hub html guide to Git help,"I've succesfully installed Hub under Windows 10 x64 (and Win 7, previously), but Windows setup requires a few more tweaks.
+
+In order to access Hub's guide, the file `hub.html` should be copied inside the docs subfolder of Git's installation folder. Which usually is:
+
+C:\Program Files\Git\mingw64\share\doc\git-doc\
+
+But I also had to rename `hub.html` to `github.html` — I guess because of the aliasing of ""hub"" with ""git"".
+
+So, now when I type `git help github` I get to see Hub's documentation (in HTML, via the browser, which is how Git on Windows shows help).
+
+I've tried to preserve the filename `hub.html`, but then `git help hub` wouldn't show anything — by which I deduced the aliasing problem, and the renaming to `github.html` solution.
+
+It would be nice to include this extra info in the Windows binary distribution of Hub. Or the `install.bat` could handle copying the html file — though, most users would think of  `git help hub` as the correct way to access help, instead of `git help github` .
+"
+no output for `hub` commands in linux subsystem for windows,"For some reason I'm not seeing any output from `hub` commands when using the Linux SubSystem for Windows 10 (Bash on Ubuntu on Windows).
+
+For instance, running `hub status` in a git repository doesn't print anything, whereas `/usr/bin/git status` shows the normal status info.
+
+Is anyone else seeing this? Any guidelines for troubleshooting? I can't figure out what could be going wrong.
+"
+sync sub-command won't remove merged branches,"In the following sequence `hub sync` won't remove local branches, that were merged/removed on Github:
+
+``` bash
+$ hub clone
+$ hub fork
+$ git checkout -b new-branch
+$ # (make & commit changes)
+$ git push gmile new-branch
+$ hub pull-request
+$ # (enter PR description)
+$ # (merge the branch on github)
+$ # (remove the branch on github)
+$ hub sync
+```
+
+After `hub sync` local branch `new-branch` is not removed. Only master is updated. Full output:
+
+```
+$ hub sync
+remote: Counting objects: 26, done.
+remote: Compressing objects: 100% (25/25), done.
+remote: Total 26 (delta 1), reused 0 (delta 0), pack-reused 0
+Updated branch master (was 4f2c4c9).
+$
+```
+
+`hub --version` returns this:
+
+```
+$ hub --version
+git version 2.10.0
+hub version 2.3.0-pre8
+$
+```
+"
+Support per-repo GitHub account configuration,"I've just started using `hub`.
+As a first step I wanted to open the github webpage with `git browse`. `hub` insists that I have to enter my account which I do not see why I have to do this right now.
+
+My motivation might seem a little bit odd:  
+I configure for each repository I am actually working on explicitly my name and email address. I do not like to have an enforced global setting. git-2.8 (March 2016) has added an option `useConfigOnly` which means if it is not set globally or locally it does not guess anymore and insists that the user has to configure it before committing. However, I only do this if I actually I want to do something in the repository. Simply opening the github webpage does not mean this necessarily.
+"
+Support multi-level remotes,"In my setup, my company has an internal GitHub Enterprise server and we contribute patches to an external github.com repository. So I have a setup that looks like this (names I'll be using in `[]`):
+
+```
+github.com/project/repo [upstream]
+           | |
+            V
+github.company.com/team/repo-fork [origin]
+           | |
+            V
+github.company.com/user/repo-fork-fork [user]
+```
+
+I have branches where I sometimes need to be able to interact with that sometimes go to `origin` and sometimes go to `upstream`. As far as I can tell, it's not possible to create an issue (or any other features like `pull-request`, etc.) in `origin` and then create an issue in `upstream` without doing a bunch of remote renaming.
+
+I'd love to see an command line option to specify the remote name for all the major commands. Off the top of my head, `issue` and `pull-request` would be priorities, but all commands that interact with a remote repository would be great.
+"
+Very little visibility into hub-augmented commands,"A lot of hub's functionality lies in the additional behavior it layers onto pre-existing git commands, but for a new user it's very difficult to discover that behavior. The README only mentions `hub clone` in passing, and `hub help clone` doesn't give any additional details, since it displays only the base git documentation. `hub help` adds to `git help`'s output, but it only lists new hub commands like `pull-request` and `fork`. The only hints that there's any more functionality are the SEE ALSO links at the bottom of the man pages for the new commands.
+
+I suggest adding some text like ""Hub also extends normal git commands. See 'hub help hub' for details."" at the bottom of the `hub help` text, to give users a more direct path to see the full functionality.
+"
+Use Markdown filetype in vim for PR messages,"Use markdown for pull request messages, with modifications to highlight
+comments as comments, the first line up to the 50th character as green,
+and the second line as red, all pulled from the `gitcommit` filetype
+that ships with Vim.
+
+Fixes #1276
+"
+Support for no_proxy environment variable,"It looks like https://github.com/github/hub/blob/master/github/http.go#L171-L193 is reimplementing the proxy logic from net/http/transport.go but it's missing the sections that support setting no_proxy. 
+"
+Add md extensions to PULLREQ_EDITMSG and ISSUE_EDITMSG,"This would allow editors to infer the file format correctly.
+"
+`hub clone -p` does not override hub.protocol option,"If `~/.gitconfig` contains:
+
+```
+[hub]
+    protocol = https
+```
+
+Then passing `git config -p USER/REPO` would be expected to override this for this particular command and use the SSH protocol unconditionally. From the manpage:
+
+```
+       git clone [-p] OPTIONS [USER/]REPOSITORY DIRECTORY
+              Clone  repository  ""git://github.com/USER/REPOSITORY.git""  into  DIRECTORY  as  with  git-clone(1). When USER/ is omitted,
+              assumes your GitHub login.
+
+              If the repository is private or the current user has push access to the repository, hub will  use  the  ssh  protocol  for
+              cloning.  Use  -p to select the ssh protocol unconditionally. HTTPS protocol can be used instead by setting ""hub.protocol""
+              (see CONFIGURATION).
+```
+
+This is with hub version 2.2.5.
+"
+OAuth token stored on gitconfig file,"How can I do to store the OAuth token inside ~/.gitconfig instead ~/.config/hub? I want to do the ""!"" trick to get the token from my keychain.
+"
+Feature to exercise #877,"This is a simplification of my failing #877 workflow, so at least I can be sure that it's not some unrelated, local-only occurrence.
+"
+use /dev/tty instead of /dev/stdout when prompting for information,"See neovim/neovim#5211
+"
+hub doesn't recognize credentials in cache,"I've setup a _credential helper_ for git as specified in https://help.github.com/articles/caching-your-github-password-in-git/
+
+Using git, it works as expected and doesn't ask the password as per the timeout settings.
+
+However, hub prompts for the username/password:
+
+```
+$  hub clone myorg/somerepo
+github.com username: ^C
+```
+
+```
+$  hub version
+git version 2.5.0
+hub version 2.2.0-238-gc25e33e
+```
+"
+Hub checkout PR: Not a git repository,"```
+> hub checkout https://github.com/iPlantCollaborativeOpenSource/atmosphere/pull/173 
+fatal: Not a git repository
+> hub --version
+git version 2.4.0
+hub version 2.2.3
+```
+
+OSX version: `10.11.3`
+"
+Pull request checkout with no 'leftovers',"I often checkout a pull request as a one-time thing. I want to take a look at the code and run it, but afterwards I'll switch back to my own branches and don't want a new remote or branch hanging around. It would be nice to have `--no-remote` and `--no-branch` flags for `hub checkout`.
+
+I would expect `--no-remote` to do:
+
+```
+git fetch <remote-url>
+git branch user-branchname FETCH_HEAD
+git checkout user-branchname
+```
+
+With `--no-branch` it would be:
+
+```
+git fetch <remote-url>
+git checkout FETCH_HEAD
+```
+
+Does this sound useful? I'd be happy to take a stab at it (I'd like to learn some go).
+"
+Added command to show the latest release.,"This adds a `release latest` command that uses the [`releases/latest`](https://developer.github.com/v3/repos/releases/#get-the-latest-release) endpoint to retrieve the latest full release and output the results using the same format as `release show`.
+"
+Add default host as configuration option (hub.defaultHost),"This adds a git configuration option to set the default GitHub host.  We are deploying GitHub Enterprise, and our developers will use our GitHub Enterprise server the _vast_ majority of the time (99+%, etc.), with access to github.com probably limited to a very few select situation.  As such, we'd prefer a more ""sticky"", uniform way to nearly always use our GitHub Enterprise server.
+
+I've tried to model this off of what I see other code doing, etc.  I have had trouble running some of the tests, though, even without this case.  Therefore, it's highly likely that these tests need some work.  I'd really appreciate it if someone could work with me on that.  We really need this simple functionality, and would really like to have it in the official hub source.
+"
+`subtree` command does not respect user/repo as repo uri,"The subtree command takes a git url (for both `git subtree add` and `git subtree pull`) but it seems that hub doesn't expand user/repo to the full git uri for the subtree commands.
+
+``` sh
+$ hub subtree pull --prefix lib/sh-semver/ qzb/sh-semver master --squash
+fatal: 'qzb/sh-semver' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+"
+prepare pull request message hook,"By analogy to git's prepare-commit-message, it'd be great to be able to set up a prepare-pull-request-message as well. My specific use case is integrating with ticketing systems (e.g. Pivotal Tracker and Jira) which recognize ticket ids in commit and PR messages and automatically update the associated tickets. It's very handy to be able to have local configs and plug that information into the PR automatically.
+
+(Respectfully, I see that the github PR templates were integrated into hub, and I'd've thought the .git/hooks approach would've been the right approach to that...)
+"
+Feature request: git url,"```
+git-url [REMOTE] [REF] [--] [PATH]
+
+Prints the GitHub URL of the specified item to standard output.
+
+Arguments:
+  REMOTE   Use the repository pointed at by the value. Defaults to master.
+  REF      A branch, tag or commit
+  PATH     A file path
+
+Remarks:
+  If a PATH is given, the specified path is linked in the given REF, or if
+  not set, to the current branch, tag or commit (if detached).
+
+  If a PATH is not given, the REF itself is linked, or the repository itself
+  if not set.
+
+  When REMOTE or REF is ambiguous, both must be supplied. When PATH is
+  ambiguous, add a -- argument before it.
+
+Examples:
+
+  $ git url
+  https://github.com/github/hub
+
+  $ git url myremote
+  https://github.com/myuser/hub
+
+  $ git url 2.2-stable
+  https://github.com/github/hub/tree/2.2-stable
+
+  $ git url 88296d1
+  https://github.com/github/hub/commit/88296d1
+
+  $ git url README.md
+  https://github.com/github/hub/blob/master/README.md
+
+  $ git url 2.2-stable README.md
+  https://github.com/github/hub/blob/2.2-stable/README.md
+
+  $ git checkout 2.2-stable
+  $ git url README.md
+  https://github.com/github/hub/blob/2.2-stable/README.md
+
+  $ git checkout 133ed4e
+  $ git url README.md
+  https://github.com/github/hub/blob/133ed4e/README.md 
+```
+"
+pre-pull-request hook?,"We've got a pre-commit hook to run our style checkers, but it's a little annoying to have to deal with it on every commit. People end up ignoring it habitually and then get frustrated when it comes out in the build. Having a `pre-pull-request` hook would be awesome to run our basic style checks.
+"
+"Create an empty repository by executing ""hub create""","Normally, we use ""hub create"" to create new repository.
+
+For example:
+
+``` sh
+$ mkdir test1
+$ cd test1/
+$ git init && git add . && git commit --allow-empty -m ""Initial commit""
+$ hub create 
+Updating origin
+created repository: XXXXX/test1
+```
+
+Current directory have to be a git repo now. But I want to create an empty repository with ""hub create"".
+
+Just like this:
+
+``` sh
+$ hub create -n shigemk2/test1
+Updating origin
+created repository: XXXXX/test1
+```
+
+Current directory is able to be anywhere(It doesn't have to be a git repo!).
+
+Is this feature in demand?
+"
+Git LFS clone support,"Git LFS v1.2 (due ""real soon now"") will introduce support for ""git lfs clone"", a much faster and more efficient way to clone repositories that make extensive use of Git LFS than a regular ""git clone"".
+
+For repositories hosted by GitHub (including GHE), it would be very nice to use both ""git lfs clone"" AND the hub-enhanced ways to refer to GitHub repositories.
+
+In fact, ""bonus points"" awarded if it's possible to also automatically use ""git lfs clone"" instead of ""git clone"".
+"
+noop is ignored for non-hub-specific commands,"```
+Josephs-MacBook-Pro:zfs joe$ hub --noop pull
+remote: Counting objects: 34, done.
+remote: Compressing objects: 100% (34/34), done.
+remote: Total 34 (delta 7), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (34/34), done.
+From github.com:openzfsonosx/zfs
+   1f1116c..5e27b31  libshare   -> origin/libshare
+Already up-to-date.
+Josephs-MacBook-Pro:zfs joe$
+```
+"
+Close pull-requests,"Is there a way to close pull requests via hub?
+"
+Last pull-request title is uploaded instead of new one.,"When I do `git pull-request` being on a feature-branch, it opens my editor and it shows the last title and description I entered. However, once I overwrite it with the new title and description still uploads to Github the previous title and description. 
+
+Why do we have this behavior?
+
+Thanks.
+"
+hub pull-request trims the content,"I often create pull requests looking like this:
+
+``` md
+ - feature 1
+ - feature 2
+ - feature 3
+ - some bug fix
+ - ...
+```
+
+But it looks like `hub` trims my input, deleting the first space. That makes my list to look ugly:
+
+```
+- first
+ - second
+ - second
+```
+
+...being rendered like this:
+- first
+  - second
+  - second
+
+Since I put that space before the first `-` I expect to have one list like this:
+- first
+- second
+- second
+"
+Adds a flag to `hub browse` to choose whether to open the current or …,"…default branch.
+
+This is a start for #1107 to let the user control a bit more which page  is open when running ""hub browse"" in a tracked branch.
+"
+Some expressions in `compare` range could be dereferenced,"I like the hub compare feature. However, it would be nice if we could specify the commit ranges in more detail, like e.g.:
+
+```
+master@{1day}...master      # As suggested by GitHub compare page
+HEAD^1..HEAD                # Not supported by GitHub but valid e.g. for git diff
+```
+
+Perhaps others will appreciate this as well and perhaps there is someone who is capable of implementing this in a short time (I am not a go person unfortunately). The first thing seems like a matter of string passing to URL, the second will perhaps involve some further manipulation.
+"
+Windows Setup: More info needed for Git Bash and PowerShell,"I've spent quite a few hours — after initial hub setup — in order to make sure everything was up and running. Mostly, it seems working: both `git` and `hub` commands give the same output of hub's help — at least ib Git Bash, but not in PowerShell! Couldn't work that one out...
+
+I've found scarce info regarding how to setup PowerShell for aliasing `git` to `hub`. Like most people using Git on Windows, I also have installed PoshGit, which seems to add a bit more complexity with the PS users profiles issues.
+
+At the end I gave up on PowerShell: both for aliasing and hub extra tab completion.
+
+As for the Git Bash settings, aliasing wasn't difficoult, but I had to Google quite a lot to come clear about the `.bashrc` file having to be created into the user root folder. 
+How I did it on Windows 7 was like this:
+1. Enter Git Bash
+2. Type `cd` (which brings back to user root folder)
+3. Typed `touch .bashrc` to create the `.bashrc` file 
+4.  Edited it with Vim (to be on the safe side of eol issues) to include the following line:
+`eval ""\$(hub alias -s)""`
+
+And it worked fine.
+
+So, I hope the above info might be useful...
+
+As for hub's Shell tab-completion, even after following instructions I am not sure that I've implemented it properly—how can I check if its working?
+I've followed instructions, deciding to go for the `.bashrc` file modification (as if on Linux) and added the if statement with paths pointing to the `hub.bash_completion` file.
+
+Is there no way that the ""Install.bat"" file could also handle setup of aliases and auto-completion?
+
+Some support for PowerShell would be really appreciated!
+
+These little frustrations aside, it's all great and smooth and managed to test and feel the improvement of hub: less burdening verbosity for those who (like me) mainly use Git only for GH operations!
+
+Thanx
+"
+"hub complains ""Unauthorized (HTTP 401)"" and ""Bad credentials""","hub 2.2.2 on OS X complains ""Unauthorized (HTTP 401)"" and ""Bad credentials"" when I try to check out a pull request. 
+
+I have not used `hub` before. My credentials work in curl and on the web site. I have nothing in any OS X keychain matching ""github"". My usual github access uses an SSH key and no 2FA.
+
+```
+% hub --version
+git version 2.6.3 (Apple Git-62)
+hub version 2.2.2
+
+% ls ~/.config/hub
+ls: /Volumes/precious/gparker/.config/hub: No such file or directory
+```
+
+[note `git` is not an alias, so the following is real git and not hub]
+
+```
+% git clone git@github.com:/apple/swift.git
+Cloning into 'swift'...
+remote: Counting objects: 318893, done.
+remote: Compressing objects: 100% (123/123), done.
+remote: Total 318893 (delta 42), reused 1 (delta 1), pack-reused 318768
+Receiving objects: 100% (318893/318893), 66.27 MiB | 4.56 MiB/s, done.
+Resolving deltas: 100% (261489/261489), done.
+Checking connectivity... done.
+Checking out files: 100% (9920/9920), done.
+
+% cd swift
+
+% env HUB_VERBOSE=1 hub checkout http://github.com/apple/swift/pull/862
+github.com username: gparker42
+github.com password for gparker42 (never stored): 
+> GET https://api.github.com/repos/apple/swift/pulls/862
+> Authorization: token 
+< HTTP 401
+{""message"":""Bad credentials"",""documentation_url"":""https://developer.github.com/v3""}
+Error getting pull request: Unauthorized (HTTP 401)
+Bad credentials
+```
+
+[note that I don't have anything in ~/.config/hub after this sequence]
+
+```
+% curl -u gparker42 https://api.github.com/repos/apple/swift/pulls/862
+Enter host password for user 'gparker42':
+{
+  ""url"": ""https://api.github.com/repos/apple/swift/pulls/862"",
+  ""id"": 54923914,
+  ""html_url"": ""https://github.com/apple/swift/pull/862"",
+  […]
+```
+"
+pull-request message not added as comment to PR,"I assume the `-m` argument to `hub pull-request` should add the message as a comment to the PR on GitHub? If that is the case, it is not working in v2.2.2.
+"
+browse not working in repositories cloned from gists,"It would be great if `hub browse` would work in repositories cloned from `gist.github.com` i.e. for remotes of the form `git@gist.github.com:<SHA1>.git` open `https://gist.github.com/<SHA1>`.
+"
+bash completion not working in Fedora 23,"I'm not sure if it's just my environment, but I cannot make bash completion working for `hub` in Fedora23.
+
+I have actually noticed that I had to put
+
+``` bash
+if [ -f /data/software/ext/hub/etc/hub.bash_completion.sh ]; then
+    source /data/software/ext/hub/etc/hub.bash_completion.sh
+fi
+
+if [ -f /data/software/ext/hub/bin/hub ]; then
+    eval ""$(hub alias -s)""
+fi
+```
+
+`bash_completion` sourcing above the alias.
+
+Now I have bash completion, but only with the original `git` operation and not the augmented list with `hub` specific ones.
+"
+Unable to automate hub pull-request,"My script looks like this:
+
+```
+cd /home/gfreeman/SteamLinux
+
+# git commands to create a branch and push it, this part works as expected
+
+echo ""Creating pull request ($(pwd)) ($(git rev-parse -q --git-dir))""
+
+hub pull-request -m ""cool message"" -b ""master"" -h ""app-1000""
+```
+
+And the output of that is:
+
+```
+Creating pull request (/home/gfreeman/SteamLinux) (.git)
+fatal: Not a git repository
+```
+
+Version:
+
+```
+git version 2.1.4
+hub version 2.2.2
+```
+
+Script itself is outside of the git directory, so that could be cause it to use wrong directory?
+"
+Add option for creating PR using the web interface,"Adds a new flag `-w`/`--web` to the pull-request command. When creating
+a new pull-request, you can use the `--web` flag for filling out the
+PR's details using GitHub's web interface, instead of using the default editor
+for git.
+
+Closes #688.
+
+I wasn't sure about the flag's name. There's already a `--browse` one, so `--browser` was quite a no-no. The `--new` one suggested in the issue's original title seemed ambiguous to me.
+
+Also, I must mention that the contribution process has been quite smooth – way more than I expected. :smile:
+
+Let me know your thoughts, any kind of feedback is welcome!
+"
+Add user command,"This new command writes the default user from hub config to stdout with a
+trailing newline. For example, if you are me you get:
+
+``` sh
+$ hub user
+sbp
+```
+
+This is useful for automating contribution scripts. Say, for example, that you
+want to write a script that pushes your contributions to some feature branch.
+Using this command, you can do:
+
+``` sh
+$ hub push `hub user` `git rev-parse --abbrev-ref HEAD`
+```
+
+Whereas otherwise you would have to manually fill in the user name, even though
+hub knows what user name it would normally use from config.
+"
+Cross-platform download script,"Background: I work on a mid-size open-source project. Whenever we get together for coding events, there are always several folks who have partially setup a dev env -- but could use a dozen more tools (including `hub`). It helps to have a script which fetches those tools. Our current script works on Linux/OSX (and partially on Windows), but it only downloads hub 1.x. (When they're available, the ruby commands seem to be standardized enough). 
+
+The hub 2.x binaries are cool because they don't have as many prerequisites and are pretty self-contained, but the install steps aren't as standardized. (You have to figure which binary to get.) It would be awesome to have a small wrapper script which could check `uname` and download the proper binary, as in:
+
+```
+$ curl http://hub.github.com/installer | sh -
+$ ./hub help
+```
+
+If bash isn't quite good enough, one could get a similar benefit by publishing shims on a couple developer networks (e.g. npmjs, rubygems, or getcomposer), e.g.
+
+```
+$ npm install -g hub-cli
+```
+"
+Use hub pull-request with SSH,"I am trying to use hub with GitHub Enterprise. My company's enterprise account is set up to only use SSH keys when pulling/pushing. I think they've disabled basic auth altogether. When using `hub pull-request`, hub prompts me for my username/password for GitHub Enterprise, which I do not have. Our web portal requires a username + 2FA token. Tried to use that to no avail.
+
+Is there a way for hub to use the GitHub API and use an SSH key to authenticate itself?
+
+Or am I out of luck?
+"
+win32 releases are mislabeled,"At https://github.com/github/hub/releases, the win32 release is named ""hub-windows-386-2.2.1.tar.gz"".
+But, it is actually compiled for Pentium 4 (and won't run on processors without SSE2).
+So, it should be labelled ""[i786](https://myonlineusb.wordpress.com/2011/06/08/what-is-the-difference-between-i386-i486-i586-i686-i786/)"" instead.
+I didn't see the Linux release, but this probably applies to it, too.
+Note that e.g. most Linux binary packages are still compiled for i686 at most, so this does make a difference.
+"
+Default Config,"I see in your docs that you have this example
+
+```
+git pull-request -F prepared-message.md
+```
+
+This is an awesome feature but it would be really nice if we could have something like a .hubconfig file that could specify something like the following.
+
+``` json
+{
+    ""pull-request"": {
+        ""F"": ""prepared-message.md""
+    }
+}
+```
+
+or maybe like this which is a little more clean
+
+``` json
+{
+    ""pull-request.F"": ""prepared-message.md""
+}
+```
+
+Any reasons that this would be undesirable? If this seems like a good idea to others I would love to write a PR for it.
+"
+hub create should git init,"In case a local directory has not been initialized as a Git repository, `hub create` should do so automatically, rather than (as currently) returning exit status `1` with standard out error message:
+
+```
+'create' must be run from inside a git repository
+```
+
+E.g.:
+
+```
+mkdir -p ~/git/my-repo && cd ~/git/my-repo
+hub create
+```
+
+To replace what's currently necessary:
+
+```
+mkdir -p ~/git/my-repo && cd ~/git/my-repo
+git init
+hub create
+```
+"
+"Incorrect ""Did you mean..."" output with Hub","For example, when running `git puhs` Git will output
+
+```
+git: 'puhs' is not a git command. See 'git --help'.
+
+Did you mean this?
+    push
+```
+
+But when running `git frok` Git will output
+
+```
+git: 'frok' is not a git command. See 'git --help'.
+
+Did you mean this?
+    fsck
+```
+
+Completely ignoring the fact that there is a git subcommand called `fork`.
+"
+"`hub clone org/repo` private repo, fails unless explicit https","I'm a member of organization `org` which has private repository `repo`:
+
+For `hub clone org/repo`:
+
+```
+github.com username: lukedmor
+github.com password for lukedmor (never stored): 
+Cloning into 'repo'...
+fatal: remote error:
+ repository not found.
+```
+
+However, `hub clone https://github.com/org/repo` does work correctly.
+"
+How to create a pull request body with hub pull-request,"It would be great to add some help text as to how to create a pull request title _and_ body with `hub pull-request`, as currently nothing is documented. I got this to work with:
+
+`echo -e ""Pull request title goes here\n\nHere's the pull request body"" | hub pull-request -F -`
+"
+New command/option to open an existing pull request,"I would like to have a command to open/browse an existing pull request.
+
+Since `pull-request` is able to see if there's a pull-request already (at least when it tries to create one), this should be possible.
+
+It should default to the current branch with its tracking remote/repo.
+
+Related issue: https://github.com/github/hub/issues/880 - which is about displaying the URL to a pull request.
+"
+Authentication should go through a user's browser,"The current approach to getting an OAuth token is suboptimal. A better approach would be to use `xdg-open` / `open` to direct the user to GitHub's site in their browser for authentication and granting authorization. That way, the user can verify that they aren't being fished, use their password manager, clearly see the scopes they are granting authorization for and more.
+
+As it is now, the user must trust that the program is neither malicious nor exploitable.
+"
+Clear instructions for `hub pull-request`,"Please provide complete instructions for creating a pull request, including all steps that make a difference, with sample arguments: `hub clone`, `hub fork`, creating the feature branch with `git checkout -b` and pushing it correctly (I see there's https://github.com/github/hub/issues/877). I've had trouble creating pull requests from the command line so I'm not sure what combination of commands actually works.
+"
+pull-request for unpushed branch opens message editor with unrelated remote,"Steps to reproduce:
+1. git checkout -b feature_branch org/master
+2. git commit
+3. hub pull-request -b org:master
+
+This results in the following prepopulated message:
+
+```
+  1 
+  2 # Requesting a pull to org:master from unrelated:feature_branch
+  3 #
+  4 # Write a message for this pull request. The first block
+  5 # of text is the title and the rest is description.
+```
+
+The .git/config for the feature_branch is
+
+```
+[branch ""feature_branch""]
+    remote = org
+    merge = refs/heads/master
+```
+
+My remotes are listed as follows on git remote -v 
+
+```
+org git@github.com:xxx (fetch)
+org git@github.com:xxx (push)
+unrelated   git@github.com:xxx (fetch)
+unrelated   git@github.com:xxx (push)
+unrelated2  git@github.com:xxx (push)
+unrelated2  git@github.com:xxx (fetch)
+myfork  git@github.com:xxx (fetch)
+myfork  git@github.com:xxx (push)
+unrelated3  git@github.com:xxx (fetch)
+unrelated3  git@github.com:xxx (push)
+unrelated4  git@github.com:xxx (push)
+unrelated4  git@github.com:xxx(fetch)
+unrelated5  git@github.com:xxx (fetch)
+unrelated5  git@github.com:xxx (push)
+```
+
+I am guessing it picks up first that does not match base from the list. I think it should rather fail if it finds there's more than one potential remote.
+"
+Auto-complete or show suggestions when tab is pressed in hub commands,"It would be cool to auto-complete or show suggestions. For example: `hub clone github/` + 2 \* `tab` would list all the public repos of Github. And `hub clone github/hu` + `tab` would complete `github/hub`
+"
+"""A pull request already exists"" error should show the url","When running `hub pull-request`, the ""A pull request already exists for ..."" error message should also show the URL, just like a successful attempt would do.
+"
+Unknown CA Authority for Github Enterprise,"Hi,
+
+I have set the local hub.host but when I try to do a 'hub pull-request', I am getting this:
+
+Post https:myhost/mypath: x509: certificate signed by unknown authority
+
+I tried adding the certificate manually to global git setup, like:
+
+git config --global --add http.sslCert path-to-pem
+git config --global --add http.sslVerify false
+
+They don't seem to work.
+My regular git works fine.
+
+What else can I try?
+
+Thanks.
+"
+"Possible feature: ""search"" command","Hi !
+
+I'd like to take the time to work on a simple search command to provide a quick interface to lookup repositories.
+
+What I had in mind: https://gist.github.com/MattHauglustaine/0ee784ad07e20b5c616f
+
+Any thoughts?
+"
+Hub pull-request doesn't take GitHub repository settings into account,"Hello.
+
+We have a private repo with default branch named `develop`. All pull requests go there and `master` branch is for stable code. But hub doesn't take this into account and tries to open pull requests to master if I do not use `-b` option.
+
+Hub version:
+
+```
+$ hub version
+git version 1.9.4.msysgit.2
+hub version 2.2.0
+```
+"
+FR: set upstream remote when cloning a forked repo.,"I hope hub can automatically set the upstream remote of my forked repo during `git clone`.
+"
+"Improve and simplify zsh completion, using `user-commands` zstyle","Defining the hub commands via the user-commands zstyle makes it less
+fragile and more straightforward.
+
+This also drops support for the bash-completion from the git
+distribution.
+"
+"Alias ""browse"" as ""open""","I get this wrong all the time, probably the reason is that other CLI adopted ""open"" to perform similar actions. Example that come to mind:
+- `open`
+- `bundle open`
+- `gem open`
+- `powder open`
+
+Of course I know\* that I can alias it in my `.gitconfig`, but maybe it will come useful to others.
+
+_\* I just found it works_
+"
+Forking gists,"I've just cloned a gist repository:
+
+```
+[tom@elbridge 788e00bd9293a3b05895]$ git remote -v 
+origin  https://gist.github.com/japaric/788e00bd9293a3b05895 (fetch)
+origin  https://gist.github.com/japaric/788e00bd9293a3b05895 (push)
+```
+
+And I thought it'd be nice to be able to fork the gist + push to my fork using `hub`, as can be done with regular GitHub repositories. Alas:
+
+```
+[tom@elbridge 788e00bd9293a3b05895]$ hub fork
+Error: repository under 'origin' remote is not a GitHub project
+```
+"
+Allow hub browse to accept remote as parameter,"`hub browse -r <remote>` or something to that effect. Perhaps just allow `hub browse <remote>/<branch>` if possible.
+"
+Possible Feature/Change:  GIT_EDITOR is parsed as shell syntax,"This might just be a design decision, but at the very least it is a heads up.   The hub command will use the GIT_EDITOR (or other common suspects) to invoke an editor of choice.   There can be problems if you qualify the path in your command and depending on the windows shell, MsysGit or Cygwin, you can have unexpected behavior and failures.
+
+% GIT_EDITOR=""/bin/vim"" hub commit --amend
+D:/Dev/Program Files/Git/bin/vim: D:/Dev/Program: No such file or directory
+error: There was a problem with the editor 'D:/Dev/Program Files/Git/bin/vim'.
+Please supply the message using either -m or -F option.
+
+The problem above is due to the space in the path, even though /bin/vim has no spaces, it is converted to a DOS path and that path may have spaces  if installed in a standard location.  Both the git and hub commands expose the editor variable to shell quoting.  Strange as it may seem, if the editor path is a canonical DOS path, i.e., d:\dev\Program Files (x86)\git\vi.exe, it will interpret the backslashes instead of seeing them as path separators.  The fix is to twice quote the string and to use forward slashes:
+
+% GIT_EDITOR=""'d:/dev/Program Files (x86)/git/vi.exe'"" git commit --amend
+
+Or if you are using vi/vim as your default editor, GIT_EDITOR is not required.   Also be aware that EDITOR or VISUAL are other environment variables that may be used in the absence of GIT_EDITOR.
+
+This also can happen with a hub pull-request, however, it shows up differently:
+
+% hub pull-request -b xxxx:yyyyy
+error using text editor for pull request message
+
+The workarounds are to quote the string and use forward slashes so that the shellquote.Split() that is done in cmd.go doesn't interpret backslashes and spaces.    Ideally, the openTextEditor() function in editor.go would normalize the string before calling cmd.New(program) where program is the raw string returned from the environment variable.
+"
+Feature request: Make 'origin' remote name configurable.,"At some places, like `hub create`, an `origin` remote name is used by default.
+I like using `upstream` instead of `origin`.
+So, it would be nice for such default remote name to be configurable somewhere.
+Thanks, and keep up your hard work. hub rocks!
+"
+hub fork <new repo name>,"It would be nice to be able to fork a repo with another name
+
+``` sh
+git clone github/hub hub-custom
+cd hub-custom
+git fork hub-custom
+```
+
+This would result in a fork on my github that's named hub-custom
+"
+Open the GitHub web interface to create the new pull request,"Instead of specifying a message/file/editor, just open the github page for a new pull request with the specified base and head. This way I can use the github interface for entering my message and description (also gives me the autocompletion for tagging reviewers).
+"
+Would like to open user page,"I thought this command, `hub browse camelmasa`,  to open user page but opened 404 page, https://github.com/camelmasa/camelmasa.
+
+I think should open user page. Do you think about this ?
+
+Thanks :smiley: 
+"
+git completion using gitfast oh-my-zsh plugin ,"I'd love it if hub's git completion would work nicely with the git completion setup by the gitfast plugin that comes with oh-my-zsh, see https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/gitfast.
+"
+Instruction or methods for uninstallation,"I know it is probably as simple as `find /usr/local/ -name 'hub*'` and remove all files. However, I think a proper documented/supported method for uninstallation should be available for users not familiar with Gem or Unix in general. 
+"
+Unable to use git when cwd is nonexistent directory,"I'm now getting
+
+```
+/usr/local/bin/hub:1227:in `pwd': No such file or directory - getcwd (Errno::ENOENT)
+    from /usr/local/bin/hub:1227:in `<module:Context>'
+    from /usr/local/bin/hub:765:in `<module:Hub>'
+    from /usr/local/bin/hub:764:in `<main>'
+```
+
+for whatever I try to do with Git.
+"
+"feature: When cloning a fork, set remote name to username","It's useful in pull-request flows. For example when I fork `rails`, I want `rails` to be `origin` and my fork to be `sheerun`. My proposal is:
+
+```
+hub clone sheerun/rails
+```
+
+would detect if `sheerun/rails` is fork of `rails/rails` and add two remotes:
+- `origin` that is set to `rails/rails`
+- `sheerun` that is set to `sheerun/rails`
+
+The `master` branch would remote track `sheerun/rails`
+"
+2FA for hub pull / push,"I know that hub works with 2FA for hub fork, hub pull-request but I'd like to use hub pull / push and be promoted for 2FA.  AIUI, hub pull / push just goes to regular git, which does not understand 2FA, uses Personal Access Tokens  which is what I'm trying to avoid
+"
+pull-request uses wrong base,"pull-request used to correctly use the base from my `origin` remote, but now it seems to want to make pull requests against asmeurer/repo:master (for a branch that I've pushed to my fork). 
+"
+Enhance ci-status,"- Get rid of `-v` switch, should be default
+- Supply `-b` switch for opening in browser (like `hub browse`)
+- Perhaps supply `-q` switch
+
+I could give it a try, but I wanted to discuss that first.
+"
+hub cherry-pick (can) fail(s) if remote already exists,"```
+bash-3.2$ hub --version
+git version 1.8.3.4
+hub version 1.10.6
+```
+
+Previously handled pull-requests from this fork, went to cherry-pick a commit:
+
+```
+bash-3.2$ hub cherry-pick https://github.com/adferguson/frenetic/commit/d952e26028661b3e15d7b84610bc8104b17de812
+fatal: remote adferguson already exists.
+```
+
+Also fails with github markdown:
+
+```
+hub cherry-pick adferguson@d952e26028661b3e15d7b84610bc8104b17de812
+fatal: remote adferguson already exists.
+```
+
+Removing the remote and then cherry-picking works. Can't seem to force it to reproduce.
+"
+hub create ORGANIZATION/NAME cannot set team_id,"``` bash
+$ hub create ORGANIZATION/NAME
+Error creating repository: Unprocessable Entity (HTTP 422)
+Invalid value for ""team_id"": """"
+```
+
+I know the team_id which should be assigned to the new repo, but I cannot set it using `hub create`.
+"
+Support web-based OAuth flow for Enterprise authentication,"Hi,
+
+I am trying to use with GitHub Enterprise, however it keeps asking for a username and password. We are using the CAS backend.
+
+Thanks!
+"
+Add `hub show` for commits,"``` shell
+afischer@leonard:~$ hub show https://github.com/Prosk8er/phpbb3/commit/b1864431e1e123c71642f9f8378b908a5343bebd
+fatal: Not a git repository (or any parent up to mount point /home)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+```
+
+``` shell
+afischer@leonard:/var/www/projects/phpbb3 (develop) $ hub show https://github.com/Prosk8er/phpbb3/commit/b1864431e1e123c71642f9f8378b908a5343bebd
+fatal: Invalid object name 'https'.
+```
+
+The expected result would be having the commit show just like `git show` shows commits, i.e.
+
+``` diff
+commit b1864431e1e123c71642f9f8378b908a5343bebd
+Author: Prosk8er <prosk8er@gotskillslounge.com>
+Date:   Mon Aug 19 10:49:47 2013 -0400
+
+    [ticket/11801] removed some whitespace and added missing semi colon's in css
+
+diff --git a/phpBB/styles/prosilver/theme/colours.css b/phpBB/styles/prosilver/theme/colours.css
+...
+```
+"
+Traverse organizations you belong to for `git clone repo`,"I'd love to be able to do `git clone foo`and it would do `git clone git://github.com/YOUR_USER/foo.git` and  `git clone git://github.com/YOUR_ORGANISATION/foo.git`
+
+Basically it should traverse `user > a-org > b-org ...`
+"
+zsh option `complete_aliases` breaks completion script,"`setopt complete_aliases`:
+
+> Prevents aliases on the command line from being internally substituted before completion is attempted.  The effect is to make the alias a distinct command for completion purposes.
+
+This breaks our current zsh completion. I guess what happens is that it skips `_hub` completion and loads `_git` directly?
+
+@goodell tried to solve this in goodell/hub@aa1675d but I feel that this approach is too brittle. Maybe we shouldn't be trying to fix this, and have people disable `complete_aliases`? Why do people set it in the first place?
+
+So far I've counted the option enabled in Holman's and Pengwynn's dotfiles. It is not enabled in Oh-my-zsh (thanks @blueyed for robbyrussell/oh-my-zsh#241) nor Prezto.
+
+@goodell: Would it be possible to create some kind of ""doctor"" script which you could eval in your zsh and it will tell you if the completion is hooked up OK and whether you need to fix something about your environment?
+"
+Fork and clone in one command,"Examples:
+
+```
+hub clone -f user/repo
+hub clone --fork user/repo
+```
+
+> Forks and then clones, adding both the upstream and own repos as reference. I prefer my own repo to be called `origin` (since this is usually the only one I'm allowed to push to), and the remote repo to be called by the other user name or `upstream`.
+
+```
+hub fork user/repo
+```
+
+> Should work outside a repository. Perhaps easier than enhancing `clone`.
+"
+`fetch` broken when fork is of a different name,"e.g.
+
+```
+# repo: ghedo/p5-Dist-Zilla-Plugin-GitHub
+$ hub fetch doherty
+fatal: 'doherty' does not appear to be a git repository
+fatal: Could not read from remote repository.
+```
+
+Note that doherty's repo is named ""Dist-Zilla-Plugin-GitHub"", i.e. without the ""p5-"" prefix.
+"
+Dedicated command for authentication & configuration,"All I really use hub for is pulling down my own repos. As a result, I've never been prompted for my username/password to connect to the API, so I'm always prompted for my username. I'd appreciate some way to just trigger the configuration by itself.
+"
+pull-request should create the remote branch if it doesn't already exist,"When the remote branch on your own repository doesn't exist, the current behavior of pull-request is confusing: it opens the editor with a stub message, and then if you fill out a message and continue, the submission fails with an opaque error message: ""Error creating pull request: Unprocessable Entity (HTTP 422)"".
+
+A better error message like would help, but in this case, I think pull-request should just automatically push to a new remote branch before opening the pull request, since that's almost always what you want.
+"
+hub alias hides git-alias,"`hub alias` does not seem to take `--noop` into account, so it hides `git-alias` from https://github.com/visionmedia/git-extras.
+
+Since it's a hub-specific command, and it's only useful at setup time, I propose to either:
+- make it aware of `--noop`
+- hide it as an option rather than a command, i.e. `hub [--alias|--shell-alias] [SHELL]`
+- make it work only if `$0` is explicitly `hub`
+"
