@@ -1,6 +1,6 @@
 # CE9010-Group-Project
 
-This repository contains the group project for CE9010
+Gated Recurrent Unit Based Title Generation 
 
 ## Identify Data Problem
 
